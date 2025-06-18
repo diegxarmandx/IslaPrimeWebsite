@@ -299,6 +299,36 @@ p {
   font-size: 0.9rem;
 }
 
+.founder-image-container {
+  position: relative;
+}
+
+.image-overlay {
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.image-overlay p {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.founder-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #333632;
+  font-weight: 150;
+  font-size: 0.9rem;
+}
+
 
 /* SERVICES */
 .hero-services {
