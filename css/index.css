@@ -332,7 +332,7 @@ p {
 
 /* SERVICES */
 .hero-services {
-  background-color: black;
+  background-color: #01042D;
   color: white;
   height: 40vh;
   display: flex;
@@ -341,9 +341,9 @@ p {
 }
 
 @media (min-width: 1140px) {
-    .hero-services{
-      height: 60vh;
-    }
+  .hero-services {
+    height: 60vh;
+  }
 }
 
 .services-title {
@@ -355,16 +355,21 @@ p {
   gap: 15px;
 }
 
+.gold{
+  color: #FFD700;
+}
+
 .services-cards {
-    display: flex;
-    flex-direction: column;
-    padding: 0 2rem;
-    gap: 50px;
-  }
+  display: flex;
+  flex-direction: column;
+  padding: 0 2rem;
+  gap: 50px;
+  
+}
 
 
 @media (min-width: 850px) {
-  .services-cards{
+  .services-cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
@@ -385,14 +390,14 @@ p {
 /* FOOTER */
 .footer {
   margin-top: 30px;
-  background-color: black;
+  background-color: #01042D;
 }
 
 @media (min-width: 1140px) {
-    .contenido-footer{
-      display: grid;
-      grid-template-columns: repeat(4, 1fr)
-    }
+  .contenido-footer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr)
+  }
 }
 
 
@@ -420,23 +425,23 @@ p {
   margin: 0 !important;
 }
 
-.no-margin-bottom{
+.no-margin-bottom {
   margin-bottom: 0 !important;
 }
 
 
 /* FORM */
-.quote-container{
-  background-color: rgb(0, 5, 35); 
+.quote-container {
+  background-color: rgb(0, 5, 35);
   padding: 2rem;
   color: white;
 }
 
-.form-boxes{
+.form-boxes {
   color: #f8bd3f;
 }
 
-.submit-btn{
+.submit-btn {
   background-color: #c4b088;
   color: #333632;
   font-weight: 500;
@@ -448,6 +453,7 @@ p {
   text-decoration: none;
   border-radius: 5px;
 }
+
 .submit-btn:hover {
   background-color: #d5c299;
   color: white;
