@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', function(){
     const btnSubmit = document.querySelector('#submit');
     const spinner = document.querySelector('#spinner');
 
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbw7QqqAt6QMeEEP4WS65om54a6MyspwiF3zKOF3fs8TVm5dOrAsA_f7jn-5kfwIhoI/exec';
+
     inputName.addEventListener('input', validar);
     inputEmail.addEventListener('input', validar);
     inputSubject.addEventListener('input', validar);
@@ -76,20 +78,29 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     function enviarEmail(e){
-        e.preventDefault()
+        e.preventDefault();
 
-        spinner.classList.remove('hidden')
-        const mensaje = 'Email has been sent successfully!'
-        
-        setTimeout(() => {
-            spinner.classList.add('hidden')
+        spinner.classList.remove('hidden');
+
+        fetch(scriptURL, {
+            method: 'POST',
+            body: new FormData(formulario)
+        })
+        .then(response => {
+            spinner.classList.add('hidden');
             const enviado = document.createElement('P');
-            enviado.textContent = mensaje; 
-            formulario.appendChild(enviado)
+            enviado.textContent = 'Form submitted successfully!';
+            formulario.appendChild(enviado);
+            formulario.reset();
 
             setTimeout(() => {
-                enviado.textContent = ''
+                enviado.remove();
             }, 5000);
-        }, 3000);
+        })
+        .catch(error => {
+            spinner.classList.add('hidden');
+            console.error('Error!', error.message);
+            alert('There was a problem sending the form. Please try again later.');
+        });
     }
 })
