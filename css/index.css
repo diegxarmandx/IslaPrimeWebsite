@@ -312,10 +312,12 @@ p {
   padding: 10px;
   text-align: center;
 }
+
 .image-overlay h2 {
   color: #333632;
   margin: 0;
 }
+
 .image-overlay p {
   color: #333632;
   font-size: 1.1rem;
@@ -335,7 +337,7 @@ p {
 }
 
 
-/* SERVICES */
+/*************** SERVICES ***************/
 .hero-services {
   background-color: #333632;
   color: white;
@@ -360,7 +362,7 @@ p {
   gap: 15px;
 }
 
-.gold{
+.gold {
   color: #FFD700;
 }
 
@@ -369,7 +371,6 @@ p {
   flex-direction: column;
   padding: 0 2rem;
   gap: 50px;
-  
 }
 
 
@@ -394,23 +395,30 @@ p {
   width: 100%;
 }
 
-/* FOOTER */
+/*************** FOOTER ***************/
 .footer {
   margin-top: 30px;
   background-color: #01042D;
 }
 
-@media (min-width: 1140px) {
+@media (min-width: 768px) {
   .contenido-footer {
     display: grid;
-    grid-template-columns: repeat(4, 1fr)
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
   }
 }
 
 
 .contenido-footer {
-  padding: 5rem;
+  padding: 2rem;
   /* 2rem = 20px... 1rem = 10px */
+}
+
+@media (max-width: 480px) {
+  .contenido-footer {
+    padding: 4rem 4rem 2rem 4rem;
+  }
 }
 
 .texto-footer {
@@ -437,7 +445,7 @@ p {
 }
 
 
-/* FORM */
+/*************** FORM ***************/
 .quote-container {
   background-color: #333632;
   padding: 2rem;
@@ -465,4 +473,244 @@ p {
   background-color: #d5c299;
   color: white;
   transform: translateY(-2px);
+}
+
+/*************** ABOUT US ***************/
+
+.about{
+  padding: 1rem;
+}
+
+@media (min-width: 1140px) {
+  .about {
+    display: flex;
+    padding: 1rem;
+  }
+
+  section.about-section .about-keys,
+  .about-title {
+    width: 50%;
+  }
+
+  section.about-section .about-keys {
+    display: flex;
+    flex-direction: column;
+  }
+
+  section.about-section .keys-flex {
+    display: flex;
+    align-items: center;
+    text-align: left;
+  }
+
+  section.about-section .key-icono {
+    margin-bottom: 3rem;
+  }
+}
+
+/* max width al footer para ver si sale como se supone */
+
+.about-title-text {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 40px 0;
+  gap: 15px;
+}
+
+@media (max-width: 1139px) {
+  .about-title-text {
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+    .about-title-text{
+      align-items: baseline;
+    }
+}
+
+.button-about {
+  width: 45%;
+  padding: 0.8rem 1rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+
+.key-texto_about {
+  padding: 1rem;
+}
+
+.about-section_keys {
+  padding-top: 2rem;
+  background-color: #faf7f0;
+  text-align: center;
+}
+
+.about-keys {
+  text-align: center;
+}
+
+@media (min-width: 1140px) {
+  .about-keys {
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 1139px) {
+  .about-keys {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-keys .keys2:last-child {
+    grid-column: 1 / -1; /* para q coja toda la 'fila' */
+    justify-self: center;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .about-keys {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 1139px) {
+  .keys-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+.keys {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+
+.key-icono {
+  justify-content: center;
+  border-radius: 50%;
+  max-width: 50px;
+  background-color: #333632;
+  color: white;
+  padding: 0.5rem;
+}
+
+.key-texto h5 {
+  text-align: center;
+  margin-top: 15px;
+}
+
+@media (min-width: 1140px) {
+  .about-section_members {
+    padding: 0 1rem;
+  }
+}
+
+.members-title {
+  margin: 40px 0;
+  text-align: center;
+}
+
+.about-members {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media (min-width: 850px) {
+  .about-members {
+    padding: 1rem;
+   justify-content: space-between;
+    flex-direction: row;
+  }
+}
+
+
+.member-info img {
+  width: 200px;
+  height: 200px;
+  display: block;
+  margin: 0 auto;
+}
+
+.member-info {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.member-info h5 {
+  margin-top: 10px;
+}
+
+
+/* Tuve que ponerle la 'ruta' completa pq hay algun !important que no me deja ponerlo bien */
+@media (min-width: 1140px) {
+  section.best-practices .practices {
+    display: flex;
+  }
+
+  section.best-practices .practices_left-column,
+  section.best-practices .practices_right-column {
+    width: 50%;
+    padding: 12rem;
+
+  }
+
+  .practices_right-column p {
+    margin: 30px 0
+  }
+
+}
+
+@media (min-width: 820px) {
+
+  section.best-practices .practices_left-column,
+  section.best-practices .practices_right-column {
+    padding: 6rem;
+
+  }
+}
+
+
+.practices_left-column {
+  background-color: #455067;
+  padding: 2rem;
+  color: white;
+}
+
+.practices_left-column p {
+  margin-top: 20px;
+}
+
+.button-practices {
+  width: 45%;
+  padding: 0.8rem 1rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.practices_right-column {
+  background-color: #f8bd3f;
+  padding: 1rem;
+  color: #323a4b;
+}
+
+
+
+.iconos_right-column {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 20px;
 }
