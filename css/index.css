@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
 }
 
 body,
@@ -9,6 +10,7 @@ html {
   height: 100%;
   font-family: Arial, sans-serif;
 }
+
 
 .hero {
   background: url('../assets/photos/landing.jpg') no-repeat center center/cover;
@@ -351,32 +353,53 @@ p {
   .hero-services {
     height: 60vh;
   }
+
+  section.services-section .services-title {
+    padding: 1rem 15rem;
+  }
+
 }
 
 .services-title {
   text-align: center;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin: 40px 0;
   display: flex;
   flex-direction: column;
   gap: 15px;
+  padding: 1rem;
+}
+
+.services-title h6 {
+  line-height: 2;
 }
 
 .gold {
   color: #FFD700;
 }
 
+.grey {
+  color: #333632;
+}
+
 .services-cards {
   display: flex;
   flex-direction: column;
-  padding: 0 2rem;
+  padding: 2rem;
   gap: 50px;
+  background-color: #333632;
+  color: white;
+}
+
+.services-cards p {
+  line-height: 2;
+}
+
+.line-height {
+  line-height: 2.5;
 }
 
 
-@media (min-width: 850px) {
-
-
+@media (min-width: 768px) {
   .services-cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -386,7 +409,7 @@ p {
 @media (min-width: 1140px) {
   .services-cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -394,6 +417,63 @@ p {
   margin-bottom: 15px;
   width: 100%;
 }
+
+@media (min-width: 1140px) {
+  .cta {
+    display: flex;
+    justify-content: center;
+  }
+
+  .cta-info {
+    padding: 3rem;
+  }
+
+  .cta-info h5 {
+    font-size: 3rem;
+  }
+
+  .cta-info p {
+    font-size: 2rem;
+  }
+
+  .cta-info h5,
+  .cta-info p {
+    line-height: 2;
+  }
+}
+
+@media (min-width: 768px) {
+  .cta {
+    display: flex;
+    justify-content: center;
+  }
+
+  .cta-info {
+    padding: 3rem;
+  }
+}
+
+.cta {
+  position: relative;
+  background: url('../assets/photos/bg-cta.jpg') no-repeat center center/cover;
+  padding: 2rem;
+  color: white;
+}
+
+.cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.cta>* {
+  position: relative;
+  z-index: 2;
+}
+
+
 
 /*************** FOOTER ***************/
 .footer {
@@ -444,18 +524,20 @@ p {
   margin-bottom: 0 !important;
 }
 
-.footer-text p{
+.footer-text p {
   color: white;
   font-size: 1.3rem;
   padding-left: 30px;
 }
-.social-icons{
+
+.social-icons {
   padding-right: 30px;
 }
-.social-icons i{
+
+.social-icons i {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  padding-top:10px;
+  padding-top: 10px;
   scale: 1.5;
   color: #d5c299;
 }
@@ -493,7 +575,7 @@ p {
 
 /*************** ABOUT US ***************/
 
-.about{
+.about {
   padding: 1rem;
 }
 
@@ -541,9 +623,9 @@ p {
 }
 
 @media (max-width: 480px) {
-    .about-title-text{
-      align-items: baseline;
-    }
+  .about-title-text {
+    align-items: baseline;
+  }
 }
 
 .button-about {
@@ -584,7 +666,8 @@ p {
   }
 
   .about-keys .keys2:last-child {
-    grid-column: 1 / -1; /* para q coja toda la 'fila' */
+    grid-column: 1 / -1;
+    /* para q coja toda la 'fila' */
     justify-self: center;
   }
 
@@ -648,7 +731,7 @@ p {
 @media (min-width: 850px) {
   .about-members {
     padding: 1rem;
-   justify-content: space-between;
+    justify-content: space-between;
     flex-direction: row;
   }
 }
@@ -729,4 +812,65 @@ p {
   display: flex;
   gap: 1rem;
   margin-bottom: 20px;
+}
+
+
+/*************** PROJECTS ***************/
+
+
+.projects-title_text {
+  display: flex;
+  flex-direction: column;
+  margin: 40px 0;
+  gap: 15px;
+  text-align: center;
+}
+
+@media (min-width: 1140px) {
+  section.projects-section .projects-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    line-height: 0;
+    padding: 0;
+  }
+}
+
+@media (min-width: 768px) {
+    section.projects-section .projects-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 2rem;
+  }
+}
+
+/* @media (min-width: 768px) {
+  section.projects-section .projects-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    line-height: 0;
+    padding: 0;
+  }
+} */
+
+
+.projects {
+  line-height: .5;
+}
+
+.project-image img {
+  width: 100%;
+  height: 300px;
+}
+
+.projects-cards {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  color: white;
+  margin: 0;
+}
+
+.project-info {
+  padding: 0 1rem;
+  margin-top: -70px;
 }
