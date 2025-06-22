@@ -836,12 +836,13 @@ p {
 }
 
 @media (min-width: 768px) {
-    section.projects-section .projects-cards {
+  section.projects-section .projects-cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    padding: 2rem;
+    padding: 0;
   }
 }
+
 
 /* @media (min-width: 768px) {
   section.projects-section .projects-cards {
@@ -865,12 +866,79 @@ p {
 .projects-cards {
   display: flex;
   flex-direction: column;
-  padding: 2rem;
-  color: white;
+  padding: 0;
   margin: 0;
+  color: white;
 }
+
 
 .project-info {
   padding: 0 1rem;
   margin-top: -70px;
+}
+
+
+
+/*************** Contact ***************/
+
+.hero-contact{
+  height: 60vh;
+  background: url('../assets/photos/contactHero.jpg') no-repeat center center/cover;
+  color: white;
+  z-index: 0;
+}
+
+.overlay-hero-contact {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 60vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.hero-text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  z-index: 1;
+  position: relative;
+}
+
+.social-icon-contact i{
+  color: #142844;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 10px;
+  height: 50px;
+  width: 50px;
+  scale: 1.5;
+  transition: color 0.3s ease;
+}
+.contact-info-content p{
+  padding-top: 15px;
+}
+
+.submit-btn-appointment {
+  background-color: #142844;
+  color: white;
+  font-weight: 500;
+  padding: .3rem 4rem;
+  font-size: 1.1rem;
+  display: inline-block;
+  margin: 0;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.submit-btn-appointment:hover {
+  background-color: white;
+  color: #142844;
+  transform: translateY(-2px);
+  cursor: pointer;
 }
