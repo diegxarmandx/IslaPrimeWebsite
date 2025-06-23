@@ -1,6 +1,6 @@
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', function () {
 
-    /************************ VARIABLES ************************/ 
+    /************************ VARIABLES ************************/
     const formInfo = {
         inputName: '',
         inputEmail: '',
@@ -16,9 +16,9 @@ document.addEventListener('DOMContentLoaded', function(){
     const btnSubmit = document.querySelector('#submit');
     const spinner = document.querySelector('#spinner');
 
-    const scriptURL ='https://script.google.com/macros/s/AKfycbxISQ4xdMZAZKxkbYdElV6OXND3LBU-rabsfT3tpoFM2gdoxUsNOH1kQPHciuC_Qd8E/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxISQ4xdMZAZKxkbYdElV6OXND3LBU-rabsfT3tpoFM2gdoxUsNOH1kQPHciuC_Qd8E/exec';
 
-    /************************ EVENT LISTENERS ************************/ 
+    /************************ EVENT LISTENERS ************************/
     inputName.addEventListener('input', validar);
     inputEmail.addEventListener('input', validar);
     inputSubject.addEventListener('input', validar);
@@ -26,14 +26,14 @@ document.addEventListener('DOMContentLoaded', function(){
     formulario.addEventListener('submit', enviarEmail);
 
     /************************ FUNCIONES ************************/
-    function validar(e){
-        if(e.target.value.trim() === ''){
+    function validar(e) {
+        if (e.target.value.trim() === '') {
             mostrarAlerta(`Please enter ${e.target.id}`, e.target.parentElement)
             formInfo[e.target.name] = '';
             comprobarEmail();
             return;
         }
-        if(e.target.id === 'email' && !validarEmail(e.target.value)){
+        if (e.target.id === 'email' && !validarEmail(e.target.value)) {
             mostrarAlerta('Invalid Email', e.target.parentElement);
             formInfo[e.target.name] = '';
             comprobarEmail();
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function(){
         console.log(formInfo)
     }
 
-    function mostrarAlerta(mensaje, referencia){
+    function mostrarAlerta(mensaje, referencia) {
         limpiarAlerta(referencia)
         const alerta = document.createElement('P');
         alerta.textContent = mensaje;
@@ -57,21 +57,21 @@ document.addEventListener('DOMContentLoaded', function(){
         referencia.appendChild(alerta);
     }
 
-    function validarEmail(email){
+    function validarEmail(email) {
         const regex = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
         const resultado = regex.test(email);
         return resultado;
     }
 
-    function limpiarAlerta(referencia){
+    function limpiarAlerta(referencia) {
         const alerta = referencia.querySelector('.test'); // test -> placeholder
-        if(alerta){
+        if (alerta) {
             alerta.remove();
         }
     }
 
-    function comprobarEmail(){
-        if(Object.values(formInfo).includes("")){
+    function comprobarEmail() {
+        if (Object.values(formInfo).includes("")) {
             btnSubmit.classList.add('opacity-50');
             btnSubmit.disabled = true;
         } else {
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     }
 
-    function enviarEmail(e){
+    function enviarEmail(e) {
         e.preventDefault();
 
         spinner.classList.remove('hidden');
@@ -89,21 +89,28 @@ document.addEventListener('DOMContentLoaded', function(){
             method: 'POST',
             body: new FormData(formulario)
         })
-        .then(response => {
-            spinner.classList.add('hidden');
-            const enviado = document.createElement('P');
-            enviado.textContent = 'Form submitted successfully!';
-            formulario.appendChild(enviado);
-            formulario.reset();
+            .then(response => {
+                spinner.classList.add('hidden');
+                const enviado = document.createElement('P');
+                enviado.textContent = 'Form submitted successfully!';
+                formulario.appendChild(enviado);
+                formulario.reset();
+                formInfo.inputName = '';
+                formInfo.inputEmail = '';
+                formInfo.inputMessage = '';
+                formInfo.inputSubject = '';
+                btnSubmit.classList.add('opacity-50');
+                btnSubmit.disabled = true;
+                console.log(formInfo)
 
-            setTimeout(() => {
-                enviado.remove();
-            }, 5000);
-        })
-        .catch(error => {
-            spinner.classList.add('hidden');
-            console.error('Error!', error.message);
-            alert('There was a problem sending the form. Please try again later.');
-        });
+                setTimeout(() => {
+                    enviado.remove();
+                }, 5000);
+            })
+            .catch(error => {
+                spinner.classList.add('hidden');
+                console.error('Error!', error.message);
+                alert('There was a problem sending the form. Please try again later.');
+            });
     }
 })
