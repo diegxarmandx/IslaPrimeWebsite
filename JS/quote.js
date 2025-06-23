@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function(){
 
+    /************************ VARIABLES ************************/ 
     const formInfo = {
         inputName: '',
         inputEmail: '',
@@ -17,12 +18,14 @@ document.addEventListener('DOMContentLoaded', function(){
 
     const scriptURL ='https://script.google.com/macros/s/AKfycbxISQ4xdMZAZKxkbYdElV6OXND3LBU-rabsfT3tpoFM2gdoxUsNOH1kQPHciuC_Qd8E/exec';
 
+    /************************ EVENT LISTENERS ************************/ 
     inputName.addEventListener('input', validar);
     inputEmail.addEventListener('input', validar);
     inputSubject.addEventListener('input', validar);
     inputMessage.addEventListener('input', validar);
     formulario.addEventListener('submit', enviarEmail);
 
+    /************************ FUNCIONES ************************/
     function validar(e){
         if(e.target.value.trim() === ''){
             mostrarAlerta(`Please enter ${e.target.id}`, e.target.parentElement)

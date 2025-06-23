@@ -418,6 +418,39 @@ p {
   width: 100%;
 }
 
+.cta {
+  position: relative;
+  background: url('../assets/photos/bg-cta.jpg') no-repeat center center/cover;
+  padding: 2rem;
+  color: white;
+}
+
+.cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.cta>* {
+  position: relative;
+  z-index: 2;
+}
+
+
+@media (min-width: 768px) {
+  .cta {
+    display: flex;
+    justify-content: center;
+  }
+
+  .cta-info {
+    padding: 3rem;
+  }
+}
+
+
 @media (min-width: 1140px) {
   .cta {
     display: flex;
@@ -442,36 +475,6 @@ p {
   }
 }
 
-@media (min-width: 768px) {
-  .cta {
-    display: flex;
-    justify-content: center;
-  }
-
-  .cta-info {
-    padding: 3rem;
-  }
-}
-
-.cta {
-  position: relative;
-  background: url('../assets/photos/bg-cta.jpg') no-repeat center center/cover;
-  padding: 2rem;
-  color: white;
-}
-
-.cta::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  backdrop-filter: blur(5px);
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.cta>* {
-  position: relative;
-  z-index: 2;
-}
 
 
 
@@ -554,6 +557,14 @@ p {
   color: #f8bd3f;
 }
 
+button:disabled,
+.submit-btn:disabled,
+.submit-btn-appointment:disabled {
+  cursor: default;
+  pointer-events: none;
+}
+
+
 .submit-btn {
   background-color: #c4b088;
   color: #333632;
@@ -565,6 +576,7 @@ p {
   transition: all 0.3s ease;
   text-decoration: none;
   border-radius: 5px;
+  border: none;
 }
 
 .submit-btn:hover {
@@ -572,6 +584,28 @@ p {
   color: white;
   transform: translateY(-2px);
 }
+
+
+.submit-btn-appointment {
+  background-color: #142844;
+  color: white;
+  font-weight: 500;
+  padding: .3rem 4rem;
+  font-size: 1.1rem;
+  display: inline-block;
+  margin: 0;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border-radius: 5px;
+  border: none;
+}
+
+.submit-btn-appointment:hover {
+  background-color: white;
+  color: #142844;
+  transform: translateY(-2px);
+}
+
 
 /*************** ABOUT US ***************/
 
@@ -616,17 +650,18 @@ p {
   gap: 15px;
 }
 
+@media (max-width: 480px) {
+  .about-title-text {
+    align-items: baseline;
+  }
+}
+
 @media (max-width: 1139px) {
   .about-title-text {
     align-items: center;
   }
 }
 
-@media (max-width: 480px) {
-  .about-title-text {
-    align-items: baseline;
-  }
-}
 
 .button-about {
   width: 45%;
@@ -650,12 +685,10 @@ p {
   text-align: center;
 }
 
-@media (min-width: 1140px) {
+@media (max-width: 480px) {
   .about-keys {
-    padding: 2rem;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
   }
 }
 
@@ -673,12 +706,15 @@ p {
 
 }
 
-@media (max-width: 480px) {
+@media (min-width: 1140px) {
   .about-keys {
+    padding: 2rem;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
   }
 }
+
 
 @media (max-width: 1139px) {
   .keys-flex {
@@ -826,22 +862,28 @@ p {
   text-align: center;
 }
 
-@media (min-width: 1140px) {
-  section.projects-section .projects-cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    line-height: 0;
-    padding: 0;
-  }
+.projects-cards {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  color: white;
 }
 
 @media (min-width: 768px) {
-  section.projects-section .projects-cards {
+  .projects-cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    padding: 0;
   }
 }
+
+@media (min-width: 1140px) {
+  .projects-cards {
+    grid-template-columns: repeat(3, 1fr);
+    line-height: 0;
+  }
+}
+
 
 
 /* @media (min-width: 768px) {
@@ -863,14 +905,6 @@ p {
   height: 300px;
 }
 
-.projects-cards {
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  margin: 0;
-  color: white;
-}
-
 
 .project-info {
   padding: 0 1rem;
@@ -881,7 +915,7 @@ p {
 
 /*************** Contact ***************/
 
-.hero-contact{
+.hero-contact {
   height: 60vh;
   background: url('../assets/photos/contactHero.jpg') no-repeat center center/cover;
   color: white;
@@ -898,7 +932,7 @@ p {
   z-index: 1;
 }
 
-.hero-text{
+.hero-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -909,7 +943,7 @@ p {
   position: relative;
 }
 
-.social-icon-contact i{
+.social-icon-contact i {
   color: #142844;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
@@ -919,7 +953,8 @@ p {
   scale: 1.5;
   transition: color 0.3s ease;
 }
-.contact-info-content p{
+
+.contact-info-content p {
   padding-top: 15px;
 }
 
