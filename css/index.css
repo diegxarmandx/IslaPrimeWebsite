@@ -12,6 +12,29 @@ html {
 }
 
 
+/* Fonts */
+
+p,li,a{
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+h1{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+}
+h2{
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+h3,h4,h5,h6{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+}
+
+
+
 .hero {
   background: url('../assets/photos/landing.jpg') no-repeat center center/cover;
   height: 100vh;
@@ -336,6 +359,9 @@ p {
   font-weight: 150;
   font-size: 0.9rem;
   padding-top: 20px;
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-weight: 400;
 }
 
 
