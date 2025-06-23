@@ -16,8 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const btnSubmit = document.querySelector('#submit');
     const spinner = document.querySelector('#spinner');
 
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxISQ4xdMZAZKxkbYdElV6OXND3LBU-rabsfT3tpoFM2gdoxUsNOH1kQPHciuC_Qd8E/exec';
-
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwycKXxFgkIbVNvQaRnnX-fX5Ts3P6gTOiXzwhd-LUtKk5XPPzQLOUXBqBZlaVZpDr-/exec';
     /************************ EVENT LISTENERS ************************/
     inputName.addEventListener('input', validar);
     inputEmail.addEventListener('input', validar);

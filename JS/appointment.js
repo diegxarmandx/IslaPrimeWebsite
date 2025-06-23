@@ -18,12 +18,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const inputTime = document.querySelector('#time');
     const inputAppointment = document.querySelector('#appointmentType')
     const inputMessage = document.querySelector('#message');
-    const formulario = document.querySelector('#Appointment-form');
+    const formulario = document.querySelector('#AppointmentForm');
     const btnSubmit = document.querySelector('#submit');
     const spinner = document.querySelector('#spinner');
 
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxISQ4xdMZAZKxkbYdElV6OXND3LBU-rabsfT3tpoFM2gdoxUsNOH1kQPHciuC_Qd8E/exec';
-
+    const appointmentScriptURL = 'https://script.google.com/macros/s/AKfycbznqtkqAm0XsEoJ_dzB6i3PsUgAB6t4bZxZnfakzTVNKt_N_VpGhNOfOzyEr2Zs_TbEVQ/exec';
     /************************ EVENT LISTENERS ************************/
     inputName.addEventListener('input', validar);
     inputEmail.addEventListener('input', validar);
@@ -104,9 +103,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         spinner.classList.remove('hidden');
 
-        fetch(scriptURL, {
+        fetch(appointmentScriptURL, {
             method: 'POST',
-            body: new FormData(formulario)
+            body: new FormData(AppointmentForm)
         })
             .then(response => {
                 spinner.classList.add('hidden');

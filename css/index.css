@@ -296,7 +296,7 @@ p {
   align-items: center;
   justify-content: center;
   text-align: start;
-  font-weight: 100;
+  font-weight: 250;
   font-size: 0.9rem;
 }
 
@@ -341,13 +341,17 @@ p {
 
 /*************** SERVICES ***************/
 .hero-services {
-  background-color: #333632;
   color: white;
-  height: 40vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 60vh;
+  background: url('../assets/photos/servicesHero.jpg') no-repeat center center/cover;
+  color: white;
+  z-index: 0;
 }
+
+
 
 @media (min-width: 1140px) {
   .hero-services {
@@ -613,6 +617,13 @@ button:disabled,
   padding: 1rem;
 }
 
+.hero-about {
+  height: 60vh;
+  background: url('../assets/photos/aboutHero.jpg') no-repeat center center/cover;
+  color: white;
+  z-index: 0;
+}
+
 @media (min-width: 1140px) {
   .about {
     display: flex;
@@ -853,6 +864,12 @@ button:disabled,
 
 /*************** PROJECTS ***************/
 
+.hero-project {
+  height: 60vh;
+  background: url('../assets/photos/projectHero.jpg') no-repeat center center/cover;
+  color: white;
+  z-index: 0;
+}
 
 .projects-title_text {
   display: flex;
@@ -922,7 +939,7 @@ button:disabled,
   z-index: 0;
 }
 
-.overlay-hero-contact {
+.overlay-hero {
   position: absolute;
   top: 0;
   left: 0;
