@@ -424,6 +424,10 @@ p {
   line-height: 2;
 }
 
+.services-cards img{
+  height: 70vh;
+}
+
 .line-height {
   line-height: 2.5;
 }
