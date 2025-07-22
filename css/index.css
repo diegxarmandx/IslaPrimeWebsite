@@ -380,6 +380,7 @@ p {
 
 /*************** SERVICES ***************/
 .hero-services {
+  position: relative;
   color: white;
   display: flex;
   justify-content: center;
@@ -709,6 +710,7 @@ button:disabled,
 }
 
 .hero-about {
+  position: relative;
   height: 60vh;
   background: url('../assets/photos/aboutHero.jpg') no-repeat center center/cover;
   color: white;
@@ -1031,6 +1033,7 @@ button:disabled,
 /*************** Contact ***************/
 
 .hero-contact {
+  position: relative;
   height: 60vh;
   background: url('../assets/photos/contactHero.jpg') no-repeat center center/cover;
   color: white;
@@ -1041,7 +1044,7 @@ button:disabled,
   position: absolute;
   top: 0;
   left: 0;
-  height: 60vh;
+  height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
