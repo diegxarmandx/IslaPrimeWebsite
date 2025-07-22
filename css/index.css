@@ -9,6 +9,7 @@ body,
 html {
   height: 100%;
   font-family: Arial, sans-serif;
+  overflow-x: hidden;
 }
 
 
@@ -174,7 +175,6 @@ p {
   padding: .4rem 4rem;
   font-size: 1.1rem;
   display: inline-block;
-  margin: 0;
   transition: all 0.3s ease;
   text-decoration: none;
   border: 2px solid white;
@@ -254,7 +254,7 @@ p {
   }
 }
 
-@media (max-width:395px) {
+@media (max-width:480px) {
   .contactUs-btn {
     padding: 0.5rem 1.5rem;
     font-size: 0.9rem;
