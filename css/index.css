@@ -178,6 +178,7 @@ p {
   transition: all 0.3s ease;
   text-decoration: none;
   border: 2px solid white;
+  margin: 0;
 }
 
 .contactUs-btn:hover {
@@ -256,12 +257,12 @@ p {
 
 @media (max-width:480px) {
   .contactUs-btn {
-    padding: 0.5rem 1.5rem;
+    padding: 0.3rem 0.7rem;
     font-size: 0.9rem;
   }
 
   .quote-btn {
-    padding: 0.5rem 1.5rem;
+    padding: 0.3rem 0.7rem;
     font-size: 0.9rem;
   }
 
