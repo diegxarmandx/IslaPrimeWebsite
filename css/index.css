@@ -417,7 +417,7 @@ p {
 
 @media (min-width: 1140px) {
   .hero-services {
-    height: 60vh;
+    height: 70vh;
   }
 
   section.services-section .services-title {
@@ -733,8 +733,8 @@ button:disabled,
 
 .hero-about {
   position: relative;
-  height: 60vh;
-  background: url('../assets/photos/aboutHero.jpg') no-repeat center center/cover;
+  height: 80vh;
+  background: url('../assets/photos/aboutHeroNew.jpg') no-repeat center center/cover;
   color: white;
   z-index: 0;
 }
