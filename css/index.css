@@ -44,7 +44,7 @@ h6 {
 
 
 .hero {
-  background: url('../assets/photos/landing.jpg') no-repeat center center/cover;
+  background: url('../assets/photos/newHero.jpg') no-repeat center center/cover;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -186,7 +186,43 @@ p {
   color: #333632;
   transform: translateY(-2px);
 }
+@media (max-width:480px) {
+  .contactUs-btn {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.9rem;
+  }
 
+  .quote-btn {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.9rem;
+  }
+
+  .learn-btn {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 396px) and (max-width: 480px) {
+  .quote-btn,
+  .contactUs-btn {
+    padding: 0.4rem 1.5rem;
+    font-size: 1rem;
+    max-width: 100%;
+    white-space: nowrap;
+  }
+
+  .content {
+    padding: 5vw;
+  }
+
+  .content .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+}
 /* Center the button container */
 .content .row {
   justify-content: start;
@@ -255,22 +291,7 @@ p {
   }
 }
 
-@media (max-width:480px) {
-  .contactUs-btn {
-    padding: 0.3rem 0.7rem;
-    font-size: 0.9rem;
-  }
 
-  .quote-btn {
-    padding: 0.3rem 0.7rem;
-    font-size: 0.9rem;
-  }
-
-  .learn-btn {
-    padding: 0.5rem 1.5rem;
-    font-size: 0.9rem;
-  }
-}
 
 .box-wrapper h2 {
   color: #333632;
