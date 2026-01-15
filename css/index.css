@@ -399,6 +399,29 @@ p {
   font-weight: 400;
 }
 
+.AIbtn{
+  background-color: #333632;
+  color: white;
+  font-weight: 500;
+  width: 15rem;
+  padding: .5rem 2.5rem;
+  margin-top: 3rem;
+  font-size: .8rem;
+  display: inline-block;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+.AIbtn:hover {
+  background-color: #6b84a5;
+  color: #333632;
+  transform: translateY(-2px);
+  border: 1px solid #333632;
+}
+
+.AIInfo p{
+  line-height: 2rem;
+}
 
 /*************** SERVICES ***************/
 .hero-services {
