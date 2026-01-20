@@ -9,17 +9,19 @@
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
     rel="stylesheet"
   />
-
+  <link rel="stylesheet" href="./css/index.css">
   <style>
     body {
-      background-color: #f8f9fa;
+      background-color: #6b84a5;
+      color: white;
     }
     .chat-box {
       height: 400px;
       overflow-y: auto;
       padding: 15px;
-      border: 1px solid #dee2e6;
-      background: white;
+      border: 3px solid #dee2e6;
+      background: #90aacb;
+      color: white;
       border-radius: 5px;
     }
     .message {
@@ -29,25 +31,71 @@
       text-align: right;
     }
     .user span {
-      background: #0d6efd;
+      background: #d5c299;
       color: white;
       padding: 8px 12px;
       border-radius: 15px;
       display: inline-block;
     }
     .assistant span {
-      background: #e9ecef;
+      background: #90aacb;
       padding: 8px 12px;
       border-radius: 15px;
       display: inline-block;
     }
+    .chatbotTitle{
+      margin-top: 7rem;
+    }
+
+    .requestBtn{
+      display: flex;
+      justify-content: center;
+    }
+    .requestBtn .btn{
+      width: auto;
+      background-color: #323232;
+      color: white;
+    }
+
+    .requestBtn .btn:hover{
+      transform: translateY(-2px);
+      background-color: #444444;
+    }
   </style>
 </head>
 <body>
+ <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#home">
+        <img src="./assets/photos/nav-logo.png" alt="Isla Prime Logo" class="nav-logo ">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
 
 <div class="container mt-5">
-  <h3 class="text-center mb-4">
-    Isla Prime – Logistics Planning Assistant (Demo)
+  <h3 class="chatbotTitle text-center mb-4">
+    Isla Prime Logistics Virtual Assistant
   </h3>
 
   <div id="chatBox" class="chat-box mb-3"></div>
@@ -62,8 +110,62 @@
     <button class="btn btn-primary" id="sendBtn">Enviar</button>
     <button class="btn btn-secondary" id="resetBtn">Reiniciar</button>
   </div>
+  <div class="container mt-5 mb-5">
+    <h4 class="text-center">Ready to submit a quote?</h4>
+    <p class="text-center">
+      If you're ready to request a quote, please call or send a message to Isla Prime Logistics at (787) 585-2743.
+      You can also email us at info@islaprimelogistics.com. or click the button below to fillout the quote form.
+    </p>
+    <div class="requestBtn">
+      <a href="index.html#quote" class="btn">Request a quote</a>
+    </div>
+  </div>
 </div>
 
-<script src="app.js"></script>
+<footer class="footer no-margin">
+    <div class="contenido-footer row">
+      <div class="texto-footer col-lg-4 col-md-4 col-sm-12">
+        <h3>Build With Isla Prime Logistics</h3>
+        <p>Moving Foward, Building Stronger.</p>
+        <p class="no-margin">Mon - Sun 8:00am - 5:00pm</p>
+      </div>
+      <div class="texto-footer col-lg-4 col-md-4 col-sm-12">
+        <h3>Our Services</h3>
+        <p class="no-margin">Water Infrastructure Construction</p>
+        <p class="no-margin">Heavy Transport Services</p>
+        <p class="no-margin">Site Preparation & Excavation</p>
+        <p class="no-margin">Project Management & Consulting</p>
+      </div>
+      <div class="texto-footer col-lg-4 col-md-4 col-sm-12">
+        <h3>Office in Puerto Rico</h3>
+        <p class="no-margin">HC 01 BOX 12026</p>
+        <p class="no-margin">Hatillo, PR 00659</p>
+        <span>
+          <p class="no-margin-bottom">787-585-2743</p>
+          <p class="no-margin">787-951-3939</p>
+          <p class="no-margin">info@islaprimelogistics.com</p>
+        </span>
+      </div>
+    </div>
+    <div class="row pt-5 pb-4" style="border-top: 1px solid #dee2e6;">
+      <div class="  d-flex justify-content-center">
+        <div class="footer-text">
+          <p>&copy; 2025 Isla Prime Logistics. All Rights Reserved</p>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61573688135005" target="_blank" class="social-icon"><i
+              class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/isla_prime_logistics/" target="_blank" class="social-icon"><i
+              class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/company/isla-prime-logistics/" target="_blank" class="social-icon"><i
+              class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script src="JS/app.js"></script>
 </body>
 </html>
