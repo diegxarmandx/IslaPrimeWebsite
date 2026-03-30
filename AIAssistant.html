@@ -27,7 +27,8 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg site-navbar fixed-top">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <nav class="navbar navbar-expand-lg site-navbar fixed-top" aria-label="Primary">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.html">
           <img src="./assets/photos/nav-logo.png" alt="Isla Prime Logo" class="nav-logo" />
@@ -54,7 +55,7 @@
       </div>
     </nav>
 
-    <main class="ai-shell section-shell">
+    <main id="main-content" class="ai-shell section-shell">
       <div class="container-wrap ai-chat-layout">
         <div class="section-head section-head--center">
           <span class="kicker">Virtual Assistant</span>
@@ -73,6 +74,7 @@
               type="text"
               id="userInput"
               class="form-control"
+              aria-label="Message for logistics assistant"
               placeholder="Describe your project or ask a logistics question..."
             />
             <button class="btn btn-primary" id="sendBtn">Send</button>
@@ -125,9 +127,9 @@
           <p>&copy; <span class="current-year">2025</span> Isla Prime Logistics. All rights reserved.</p>
         </div>
         <div class="social-icons">
-          <a href="https://www.facebook.com/profile.php?id=61573688135005" target="_blank" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.instagram.com/isla_prime_logistics/" target="_blank" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://www.linkedin.com/company/isla-prime-logistics/" target="_blank" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61573688135005" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/islaprimelogistics/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/company/isla-prime-logistics/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         </div>
       </div>
     </footer>
