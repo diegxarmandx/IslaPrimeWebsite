@@ -50,6 +50,7 @@
             <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
             <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+            <li class="nav-item"><a class="nav-link" href="cotizador.html">Quoter</a></li>
           </ul>
           <a class="nav-cta" href="contact.html">Start a Project</a>
         </div>
@@ -67,7 +68,7 @@
           and field-tested safety. From hauling to site-readiness support, we keep your project moving without friction.
         </p>
         <div class="hero-actions">
-          <a class="quote-btn" href="#quote">Get a Quote</a>
+          <a class="quote-btn" href="cotizador.html">Get a Quote</a>
           <a class="contactUs-btn" href="contact.html">Talk to Our Team</a>
         </div>
       </div>
@@ -194,72 +195,25 @@
       </div>
     </section>
 
-    <section class="section-shell quote-area" id="quote">
+    <section class="section-shell section-shell--tight final-quoter-cta" aria-labelledby="final-quoter-title">
       <div class="container-wrap">
-        <div class="quote-layout">
-          <div class="quote-intro">
-            <span class="kicker">Request a Quote</span>
-            <h2>Tell us about your project scope</h2>
-            <p class="lead-text">
-              Share your timeline, location, and transport or infrastructure needs. Our team will follow up with a
-              tailored proposal built for your specific project.
-            </p>
-            <img src="assets/photos/logo.svg" alt="Isla Prime Logistics mark" loading="lazy" decoding="async" />
+        <div class="final-quoter-cta-panel card-surface">
+          <div class="final-quoter-brand">
+            <img src="assets/photos/logo.svg" alt="Isla Prime Logistics logo" loading="lazy" decoding="async" />
           </div>
-
-          <div class="form-boxes">
-            <form class="quote-form" id="formulario">
-              <div>
-                <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" name="inputName" placeholder="Your full name" />
-              </div>
-              <div>
-                <label for="email" class="form-label">Email</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="email"
-                  name="inputEmail"
-                  placeholder="you@example.com"
-                />
-              </div>
-              <div>
-                <label for="subject" class="form-label">Subject</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="subject"
-                  name="inputSubject"
-                  placeholder="Project type or request"
-                />
-              </div>
-              <div>
-                <label for="message" class="form-label">Message</label>
-                <textarea
-                  class="form-control"
-                  id="message"
-                  name="inputMessage"
-                  rows="4"
-                  placeholder="Share scope, location, and desired dates"
-                ></textarea>
-              </div>
-              <button type="submit" id="submit" class="submit-btn opacity-50" disabled>Submit Request</button>
-            </form>
-
-            <div id="spinner" class="hidden spinner" aria-live="polite">
-              <div class="sk-chase">
-                <div class="sk-chase-dot"></div>
-                <div class="sk-chase-dot"></div>
-                <div class="sk-chase-dot"></div>
-                <div class="sk-chase-dot"></div>
-                <div class="sk-chase-dot"></div>
-                <div class="sk-chase-dot"></div>
-              </div>
-            </div>
+          <div class="final-quoter-copy">
+            <span class="kicker">Project Estimate</span>
+            <h3 id="final-quoter-title">Ready to estimate your hauling scope in minutes?</h3>
+            <p>
+              Use the Isla Prime quoter to select your material, destination, and quantity, then get an immediate
+              estimate for your next project.
+            </p>
+            <a href="cotizador.html" class="assistant-cta-link final-quoter-btn">Open the Quoter</a>
           </div>
         </div>
       </div>
     </section>
+
     </main>
 
     <footer class="footer">
@@ -303,6 +257,5 @@
       crossorigin="anonymous"
     ></script>
     <script src="./JS/year.js"></script>
-    <script src="./JS/quote.js"></script>
   </body>
 </html>
