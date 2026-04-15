@@ -513,9 +513,10 @@ function calculate() {
     const transport = miles * 4 * trips;
     const driver = 150 * trips;
     const mat = qty * q.salePrice;
+    const matCost = qty * q.cost;
     const tolls = dest.toll * 2 * trips;
     const total = Math.round((transport + driver + mat + tolls) * 100) / 100;
-    return { quarry: q, total, trips, transport: Math.round(transport*100)/100, driver, mat, tolls: Math.round(tolls*100)/100 };
+    return { quarry: q, total, trips, transport: Math.round(transport*100)/100, driver, mat, matCost, tolls: Math.round(tolls*100)/100 };
   });
 
   options.sort((a, b) => a.total - b.total);
@@ -618,7 +619,8 @@ function logToSheet(material, destino, cantidad, best) {
     total: best.total,
     transporte: best.transport,
     chofer: best.driver,
-    materialCost: best.mat,
+    costoMaterial: best.matCost,
+    ventaMaterial: best.mat,
     peajes: best.tolls,
     cantera: best.quarry.location
   };
