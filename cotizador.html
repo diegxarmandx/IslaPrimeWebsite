@@ -601,44 +601,41 @@ function updateSteps(mat, pub, qty) {
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbz449LMkEwDK02ds2igKccT3md3SwVuPtnDqAyxrxRQIgAlCWvaUft9FVPJByKtJkBc/exec';
 let lastLog = '';
 
-// FIX: Use fetch() with no-cors so it fires reliably on mobile
-// even when WhatsApp app intercepts the tap immediately
 function logCurrentQuote() {
   if (!window.currentQuote) return;
   const q = window.currentQuote;
+  logToSheet(q.material, q.pueblo, q.qty, q.best);
+}
 
+function logToSheet(material, destino, cantidad, best) {
   // Prevent duplicate logs for same quote
-  const key = q.material + q.pueblo + q.qty;
+  const key = material + destino + cantidad;
   if (key === lastLog) return;
   lastLog = key;
 
   const now = new Date();
+  const fecha = now.toLocaleDateString('es-PR');
+  const hora = now.toLocaleTimeString('es-PR', { hour: '2-digit', minute: '2-digit' });
+
   const payload = {
-    fecha: now.toLocaleDateString('es-PR'),
-    hora: now.toLocaleTimeString('es-PR', { hour: '2-digit', minute: '2-digit' }),
-    material: q.material,
-    destino: q.pueblo,
-    cantidad: q.qty,
-    viajes: q.best.trips,
-    total: q.best.total,
-    transporte: q.best.transport,
-    chofer: q.best.driver,
-    costoMaterial: q.best.matCost,
-    ventaMaterial: q.best.mat,
-    peajes: q.best.tolls,
-    cantera: q.best.quarry.location
+    fecha: fecha,
+    hora: hora,
+    material: material,
+    destino: destino,
+    cantidad: cantidad,
+    viajes: best.trips,
+    total: best.total,
+    transporte: best.transport,
+    chofer: best.driver,
+    costoMaterial: best.matCost,
+    ventaMaterial: best.mat,
+    peajes: best.tolls,
+    cantera: best.quarry.location
   };
 
-  // Use fetch with no-cors — works on mobile even when WhatsApp opens immediately
-  fetch(SHEET_URL + '?data=' + encodeURIComponent(JSON.stringify(payload)), {
-    method: 'GET',
-    mode: 'no-cors',
-    keepalive: true
-  }).catch(function() {
-    // Fallback: Image pixel if fetch fails
-    var img = new Image();
-    img.src = SHEET_URL + '?data=' + encodeURIComponent(JSON.stringify(payload));
-  });
+  const encoded = encodeURIComponent(JSON.stringify(payload));
+  const img = new Image();
+  img.src = SHEET_URL + '?data=' + encoded;
 }
 </script>
 </body>
