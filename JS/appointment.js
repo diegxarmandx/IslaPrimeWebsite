@@ -34,28 +34,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function validar(e) {
     if (e.target.value.trim() === '') {
-      mostrarAlerta(`Please enter ${e.target.id}`, e.target.parentElement);
+      mostrarAlerta(`Por favor completa este campo.`, e.target.parentElement);
       formInfo[e.target.name] = '';
       comprobarFormulario();
       return;
     }
 
     if (e.target.id === 'email' && !validarEmail(e.target.value)) {
-      mostrarAlerta('Please enter a valid email address.', e.target.parentElement);
+      mostrarAlerta('Por favor escribe un correo electrónico válido.', e.target.parentElement);
       formInfo[e.target.name] = '';
       comprobarFormulario();
       return;
     }
 
     if (e.target.id === 'phone' && !validarPhone(e.target.value)) {
-      mostrarAlerta('Sorry, we currently operate in Puerto Rico area codes only.', e.target.parentElement);
+      mostrarAlerta('Por ahora solo trabajamos con códigos de área de Puerto Rico.', e.target.parentElement);
       formInfo[e.target.name] = '';
       comprobarFormulario();
       return;
     }
 
     if (e.target.id === 'date' && !validarDate(e.target.value)) {
-      mostrarAlerta('Please choose today or a future date.', e.target.parentElement);
+      mostrarAlerta('Por favor escoge la fecha de hoy o una fecha futura.', e.target.parentElement);
       formInfo[e.target.name] = '';
       comprobarFormulario();
       return;
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })
       .then(() => {
         spinner.classList.add('hidden');
-        showFormMessage('Appointment request submitted successfully.', 'is-success');
+        showFormMessage('Solicitud de cita enviada correctamente.', 'is-success');
         formulario.reset();
         resetFormInfo();
         btnSubmit.classList.add('opacity-50');
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
       })
       .catch(() => {
         spinner.classList.add('hidden');
-        showFormMessage('There was a problem sending the form. Please try again.', 'is-error');
+        showFormMessage('Hubo un problema enviando el formulario. Por favor intenta nuevamente.', 'is-error');
       });
   }
 });

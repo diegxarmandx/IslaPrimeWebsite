@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-PR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Isla Prime - Logistics Assistant</title>
+    <title>Isla Prime - Asistente de Logística</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -27,11 +27,11 @@
   </head>
 
   <body>
-    <a class="skip-link" href="#main-content">Skip to main content</a>
-    <nav class="navbar navbar-expand-lg site-navbar fixed-top" aria-label="Primary">
+    <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+    <nav class="navbar navbar-expand-lg site-navbar fixed-top" aria-label="Principal">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.html">
-          <img src="./assets/photos/nav-logo.png" alt="Isla Prime Logo" class="nav-logo" />
+          <img src="./assets/photos/nav-logo.png" alt="Logo de Isla Prime" class="nav-logo" />
         </a>
         <button
           class="navbar-toggler"
@@ -40,19 +40,20 @@
           data-bs-target="#navbarNav"
           aria-controls="navbarNav"
           aria-expanded="false"
-          aria-label="Toggle navigation"
+          aria-label="Abrir navegación"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
           <ul class="navbar-nav align-items-lg-center">
-            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-            <li class="nav-item"><a class="nav-link" href="materiales/index.html">Materials</a></li>
-            <li class="nav-item"><a class="nav-link" href="cotizador.html">Quoter</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">Nosotros</a></li>
+            <li class="nav-item"><a class="nav-link" href="services.html">Servicios</a></li>
+            <li class="nav-item"><a class="nav-link" href="acarreo.html">Acarreo</a></li>
+            <li class="nav-item"><a class="nav-link" href="materiales/index.html">Materiales</a></li>
+            <li class="nav-item"><a class="nav-link" href="cotizador.html">Cotizador</a></li>
           </ul>
-          <a class="nav-cta" href="cotizador.html">Request a Quote</a>
+          <a class="nav-cta" href="cotizador.html">Solicitar Cotización</a>
         </div>
       </div>
     </nav>
@@ -60,11 +61,11 @@
     <main id="main-content" class="ai-shell section-shell">
       <div class="container-wrap ai-chat-layout">
         <div class="section-head section-head--center">
-          <span class="kicker">Virtual Assistant</span>
-          <h1>Isla Prime Logistics Project Guidance</h1>
+          <span class="kicker">Asistente Virtual</span>
+          <h1>Orientación de Proyecto de Isla Prime Logistics</h1>
           <p class="lead-text">
-            Describe your project and get step-by-step orientation on likely materials, hauling considerations, and
-            preparation needs before requesting a formal quote.
+            Describe tu proyecto y recibe orientación paso a paso sobre materiales probables, consideraciones de acarreo
+            y preparación antes de solicitar una cotización formal.
           </p>
         </div>
 
@@ -76,27 +77,28 @@
               type="text"
               id="userInput"
               class="form-control"
-              aria-label="Message for logistics assistant"
-              placeholder="Describe your project or ask a logistics question..."
+              aria-label="Mensaje para el asistente de logística"
+              placeholder="Describe tu proyecto o haz una pregunta de logística..."
             />
-            <button class="btn btn-primary" id="sendBtn">Send</button>
-            <button class="btn btn-secondary" id="resetBtn">Reset</button>
+            <button class="btn btn-primary" id="sendBtn">Enviar</button>
+            <button class="btn btn-secondary" id="resetBtn">Reiniciar</button>
           </div>
 
           <div class="prompt-chips" aria-hidden="true">
-            <span class="prompt-chip">Home construction site prep</span>
-            <span class="prompt-chip">Fill material guidance</span>
-            <span class="prompt-chip">Excavation and hauling sequence</span>
+            <span class="prompt-chip">Preparación de terreno residencial</span>
+            <span class="prompt-chip">Orientación sobre material de relleno</span>
+            <span class="prompt-chip">Secuencia de excavación y acarreo</span>
           </div>
         </section>
 
         <section class="card-surface assistant-cta-card">
-          <h3>Ready to submit your request?</h3>
+          <h3>¿Listo para enviar tu solicitud?</h3>
           <p class="lead-text">
-            Once you have a clearer project scope, call us at <strong>787-585-2743</strong>, email
-            <strong>info@islaprimelogistics.com</strong>, or use the quoter below.
+            Cuando tengas más claro el alcance de tu proyecto, llámanos al <strong>787-585-2743</strong>, escribe a
+            <strong>info@islaprimelogistics.com</strong> o usa el cotizador de abajo.
           </p>
-          <a href="cotizador.html" class="btn-main assistant-cta-link">Go to Quoter</a>
+          <a href="acarreo.html" class="btn-quiet assistant-cta-link">Ver Servicio de Acarreo</a>
+          <a href="cotizador.html" class="btn-main assistant-cta-link">Ir al Cotizador</a>
         </section>
       </div>
     </main>
@@ -104,19 +106,19 @@
     <footer class="footer">
       <div class="contenido-footer row">
         <div class="texto-footer col-lg-4 col-md-6 col-sm-12">
-          <h3>Build with Isla Prime Logistics</h3>
-          <p>Moving forward, building stronger communities.</p>
-          <p class="no-margin">Mon - Sun 8:00am - 5:00pm</p>
+          <h3>Construye con Isla Prime Logistics</h3>
+          <p>Moviendo a Puerto Rico hacia comunidades más fuertes.</p>
+          <p class="no-margin">Lun - Dom 8:00am - 5:00pm</p>
         </div>
         <div class="texto-footer col-lg-4 col-md-6 col-sm-12">
-          <h3>Core Services</h3>
-          <p class="no-margin">Water Infrastructure Construction</p>
-          <p class="no-margin">Heavy Transport Services</p>
-          <p class="no-margin">Site Preparation &amp; Excavation</p>
-          <p class="no-margin">Project Management &amp; Consulting</p>
+          <h3>Servicios Principales</h3>
+          <p class="no-margin">Construcción de Infraestructura de Agua</p>
+          <p class="no-margin">Servicios de Transporte Pesado</p>
+          <p class="no-margin">Preparación de Terreno y Excavación</p>
+          <p class="no-margin">Gerencia de Proyecto y Consultoría</p>
         </div>
         <div class="texto-footer col-lg-4 col-md-12 col-sm-12">
-          <h3>Puerto Rico Office</h3>
+          <h3>Oficina en Puerto Rico</h3>
           <p class="no-margin">HC 01 BOX 12026</p>
           <p class="no-margin">Hatillo, PR 00659</p>
           <p class="no-margin">787-585-2743</p>
@@ -126,7 +128,7 @@
       </div>
       <div class="footer-bottom">
         <div class="footer-text">
-          <p>&copy; <span class="current-year">2025</span> Isla Prime Logistics. All rights reserved.</p>
+          <p>&copy; <span class="current-year">2025</span> Isla Prime Logistics. Todos los derechos reservados.</p>
         </div>
         <div class="social-icons">
           <a href="https://www.facebook.com/profile.php?id=61573688135005" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>

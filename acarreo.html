@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acarreo de Materiales a Granel | Isla Prime Logistics</title>
+<meta name="description" content="Acarreo de materiales a granel en los 78 municipios de Puerto Rico. Tierra, grava, piedra, arena y más. Cotiza al instante.">
+<meta property="og:title" content="Acarreo de Materiales | Isla Prime Logistics">
+<meta property="og:description" content="Entrega rápida de materiales a granel en todo Puerto Rico. Cotiza al instante.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.islaprimelogistics.com/acarreo.html">
+<link rel="canonical" href="https://www.islaprimelogistics.com/acarreo.html">
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT"
+  crossorigin="anonymous"
+>
+<link rel="stylesheet" href="./css/index.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#d5c299;
+  --gold-dark:#b8a17a;
+  --gold-light:#e8dcc6;
+  --dark:#1b1b1b;
+  --dark-2:#252525;
+  --dark-3:#2f2f2f;
+  --text:#f0ece4;
+  --text-dim:#9a9590;
+  --radius:10px;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  background:var(--dark);
+  color:var(--text);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+.site-navbar{font-family:var(--font-body,"Manrope",sans-serif)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;min-height:100dvh;
+  display:flex;align-items:center;
+  position:relative;
+  padding:120px 24px 80px;
+  overflow:hidden;
+  background:var(--dark);
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(213,194,153,.08) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(213,194,153,.04) 0%, transparent 60%);
+  z-index:0;
+  pointer-events:none;
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(213,194,153,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(213,194,153,.03) 1px, transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 80%);
+  -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 80%);
+}
+.hero-content{
+  max-width:1200px;margin:0 auto;width:100%;
+  position:relative;z-index:1;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(213,194,153,.1);
+  border:1px solid rgba(213,194,153,.2);
+  border-radius:50px;padding:6px 16px;
+  font-size:.8rem;font-weight:600;
+  color:var(--gold);
+  margin-bottom:28px;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.hero-badge-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--gold);
+  animation:pulse-dot 2s infinite;
+}
+@keyframes pulse-dot{
+  0%,100%{opacity:1}50%{opacity:.3}
+}
+.hero h1{
+  font-size:clamp(2.5rem, 6vw, 4.5rem);
+  font-weight:900;line-height:1.05;
+  letter-spacing:-.03em;
+  max-width:800px;
+  margin-bottom:24px;
+}
+.hero h1 .gold{color:var(--gold)}
+.hero-sub{
+  font-size:clamp(1.05rem, 2vw, 1.3rem);
+  color:var(--text-dim);
+  max-width:560px;
+  margin-bottom:40px;
+  line-height:1.6;
+}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-weight:700;font-size:1rem;
+  padding:16px 32px;border-radius:50px;
+  border:none;cursor:pointer;
+  transition:all .25s;
+  font-family:inherit;
+}
+.btn-primary{
+  background:var(--gold);color:var(--dark);
+}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 30px rgba(213,194,153,.25)}
+.btn-secondary{
+  background:rgba(255,255,255,.06);color:var(--text);
+  border:1px solid rgba(255,255,255,.12);
+}
+.btn-secondary:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+.btn svg{width:20px;height:20px;flex-shrink:0}
+.hero-stats{
+  display:flex;gap:48px;margin-top:64px;
+  padding-top:40px;
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.hero-stat-val{
+  font-size:2rem;font-weight:800;
+  color:var(--gold);line-height:1;
+}
+.hero-stat-label{
+  font-size:.8rem;color:var(--text-dim);
+  margin-top:6px;text-transform:uppercase;
+  letter-spacing:.06em;font-weight:500;
+}
+
+/* ── SECTION COMMON ── */
+section{padding:100px 24px}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-label{
+  font-size:.75rem;font-weight:700;
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  margin-bottom:12px;
+}
+.section-title{
+  font-size:clamp(1.8rem, 4vw, 2.8rem);
+  font-weight:800;line-height:1.15;
+  letter-spacing:-.02em;
+  margin-bottom:16px;
+}
+.section-desc{
+  color:var(--text-dim);
+  font-size:1.05rem;
+  max-width:540px;
+  margin-bottom:48px;
+}
+
+/* ── MATERIALES ── */
+.mat-section{background:var(--dark-2)}
+.mat-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(170px, 1fr));
+  gap:12px;
+}
+.mat-card{
+  background:var(--dark-3);
+  border:1px solid rgba(255,255,255,.05);
+  border-radius:var(--radius);
+  padding:20px;
+  text-align:center;
+  transition:all .25s;
+  position:relative;
+  overflow:hidden;
+}
+.mat-card:hover{
+  border-color:rgba(213,194,153,.3);
+  transform:translateY(-3px);
+  box-shadow:0 8px 24px rgba(0,0,0,.3);
+}
+.mat-icon{
+  width:44px;height:44px;
+  border-radius:10px;
+  background:rgba(213,194,153,.1);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 12px;
+  font-size:1.3rem;
+}
+.mat-name{
+  font-weight:700;font-size:.9rem;
+  letter-spacing:.01em;
+}
+
+/* ── COBERTURA ── */
+.cob-section{position:relative;overflow:hidden}
+.cob-layout{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  align-items:center;
+}
+.cob-map{
+  position:relative;
+  background:var(--dark-2);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:16px;
+  padding:48px 32px;
+  text-align:center;
+}
+.cob-map-number{
+  font-size:6rem;font-weight:900;
+  color:var(--gold);line-height:1;
+  letter-spacing:-.04em;
+}
+.cob-map-label{
+  font-size:1.1rem;font-weight:600;
+  margin-top:8px;
+}
+.cob-map-sub{
+  color:var(--text-dim);font-size:.9rem;
+  margin-top:4px;
+}
+.cob-routes{
+  display:flex;flex-direction:column;gap:16px;
+  margin-top:32px;
+}
+.cob-route{
+  display:flex;align-items:center;gap:12px;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:var(--radius);
+  padding:14px 18px;
+}
+.cob-route-dot{
+  width:10px;height:10px;border-radius:50%;
+  flex-shrink:0;
+}
+.cob-route-name{font-weight:600;font-size:.9rem}
+.cob-route-desc{color:var(--text-dim);font-size:.8rem}
+.cob-features{display:flex;flex-direction:column;gap:20px}
+.cob-feature{
+  display:flex;gap:16px;align-items:flex-start;
+}
+.cob-feature-icon{
+  width:48px;height:48px;flex-shrink:0;
+  border-radius:12px;
+  background:rgba(213,194,153,.08);
+  border:1px solid rgba(213,194,153,.15);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;
+}
+.cob-feature-title{font-weight:700;font-size:1rem;margin-bottom:2px}
+.cob-feature-desc{color:var(--text-dim);font-size:.9rem}
+
+/* ── FLOTA ── */
+.flota-section{background:var(--dark-2)}
+.flota-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:20px;
+}
+.flota-card{
+  background:var(--dark);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:16px;
+  padding:32px;
+  transition:all .25s;
+}
+.flota-card:hover{
+  border-color:rgba(213,194,153,.2);
+  transform:translateY(-2px);
+}
+.flota-cap{
+  font-size:3rem;font-weight:900;
+  color:var(--gold);line-height:1;
+}
+.flota-cap span{font-size:1.2rem;font-weight:600;color:var(--text-dim)}
+.flota-label{
+  font-weight:700;font-size:1.1rem;
+  margin:12px 0 8px;
+}
+.flota-desc{color:var(--text-dim);font-size:.9rem}
+.flota-spec{
+  margin-top:16px;
+  display:flex;flex-wrap:wrap;gap:8px;
+}
+.flota-tag{
+  background:rgba(213,194,153,.08);
+  border:1px solid rgba(213,194,153,.15);
+  border-radius:6px;
+  padding:4px 12px;
+  font-size:.78rem;font-weight:600;
+  color:var(--gold);
+}
+
+/* ── PROCESO ── */
+.proceso-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+  gap:20px;
+  counter-reset:step;
+}
+.proceso-step{
+  background:var(--dark-2);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:16px;
+  padding:32px 28px;
+  position:relative;
+  counter-increment:step;
+}
+.proceso-step::before{
+  content:counter(step);
+  display:flex;align-items:center;justify-content:center;
+  width:36px;height:36px;border-radius:50%;
+  background:var(--gold);color:var(--dark);
+  font-weight:800;font-size:.9rem;
+  margin-bottom:16px;
+}
+.proceso-step-title{font-weight:700;font-size:1.05rem;margin-bottom:6px}
+.proceso-step-desc{color:var(--text-dim);font-size:.9rem}
+
+/* ── CTA FINAL ── */
+.cta-section{
+  background:linear-gradient(135deg, rgba(213,194,153,.08), rgba(213,194,153,.02));
+  border-top:1px solid rgba(213,194,153,.1);
+  border-bottom:1px solid rgba(213,194,153,.1);
+  text-align:center;
+}
+.cta-section .section-title{max-width:600px;margin:0 auto 12px}
+.cta-section .section-desc{margin:0 auto 36px}
+.cta-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.cta-phone{
+  margin-top:24px;
+  font-size:1.6rem;font-weight:800;
+  color:var(--gold);
+  letter-spacing:.02em;
+}
+.cta-phone a{transition:opacity .2s}
+.cta-phone a:hover{opacity:.8}
+
+/* ── FOOTER ── */
+.footer{
+  padding:48px 24px;
+  border-top:1px solid rgba(255,255,255,.05);
+  text-align:center;
+  background:var(--dark);
+  color:var(--text);
+  margin-top:0;
+}
+.footer-logo{height:56px;margin-bottom:16px;opacity:.7}
+.footer-company{font-weight:600;font-size:.95rem;margin-bottom:4px}
+.footer-addr{color:var(--text-dim);font-size:.85rem}
+.footer-copy{
+  color:var(--text-dim);font-size:.75rem;
+  margin-top:20px;
+  opacity:.5;
+}
+.footer-links{
+  margin-top:18px;
+  display:flex;flex-wrap:wrap;justify-content:center;gap:14px;
+}
+.footer-links a{
+  color:var(--gold);
+  font-size:.78rem;font-weight:700;
+  letter-spacing:.05em;text-transform:uppercase;
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .hero-stats{gap:32px;flex-wrap:wrap}
+  .hero-stat-val{font-size:1.6rem}
+  .cob-layout{grid-template-columns:1fr;gap:40px}
+  .mat-grid{grid-template-columns:repeat(auto-fill, minmax(140px, 1fr))}
+  section{padding:72px 20px}
+}
+@media(max-width:480px){
+  .hero-actions{flex-direction:column}
+  .btn{justify-content:center;width:100%}
+  .hero-stats{gap:24px}
+  .mat-grid{grid-template-columns:repeat(2, 1fr)}
+}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(30px);transition:all .6s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+<nav class="navbar navbar-expand-lg site-navbar fixed-top" aria-label="Principal">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.html">
+      <img src="./assets/photos/nav-logo.png" alt="Logo de Isla Prime" class="nav-logo">
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Abrir navegación"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">Nosotros</a></li>
+        <li class="nav-item"><a class="nav-link" href="services.html">Servicios</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="acarreo.html">Acarreo</a></li>
+        <li class="nav-item"><a class="nav-link" href="materiales/index.html">Materiales</a></li>
+        <li class="nav-item"><a class="nav-link" href="cotizador.html">Cotizador</a></li>
+      </ul>
+      <a class="nav-cta" href="contact.html">Comenzar Proyecto</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<main id="main-content">
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Servicio en toda la isla
+    </div>
+    <h1>Acarreo de materiales <span class="gold">a granel</span> en Puerto Rico</h1>
+    <p class="hero-sub">Entregamos tierra, grava, piedra, arena y más a tu proyecto. Flota propia, precios directos, servicio en los 78 municipios.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/17875975377?text=Hola%2C%20me%20interesa%20cotizar%20acarreo%20de%20materiales" class="btn btn-primary" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Cotizar por WhatsApp
+      </a>
+      <a href="cotizador.html" class="btn btn-secondary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+        Cotizador en Línea
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-val">78</div>
+        <div class="hero-stat-label">Municipios</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">12+</div>
+        <div class="hero-stat-label">Materiales</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">20m³</div>
+        <div class="hero-stat-label">Por Viaje</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MATERIALES -->
+<section class="mat-section">
+  <div class="section-inner reveal">
+    <div class="section-label">Materiales</div>
+    <div class="section-title">Todo lo que tu proyecto necesita</div>
+    <p class="section-desc">Materiales a granel con entrega directa al punto de obra. Orden mínima: 10m³.</p>
+    <div class="mat-grid">
+      <div class="mat-card">
+        <div class="mat-icon">&#9776;</div>
+        <div class="mat-name">Tierra</div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-icon">&#9830;</div>
+        <div class="mat-name">Grava</div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-icon">&#9650;</div>
+        <div class="mat-name">Piedra</div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-icon">&#9679;</div>
+        <div class="mat-name">Mogolla</div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-icon">&#9645;</div>
+        <div class="mat-name">Tosca</div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-icon">&#8776;</div>
+        <div class="mat-name">Arena de Río</div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-icon">&#9752;</div>
+        <div class="mat-name">Top Soil</div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-icon">&#10047;</div>
+        <div class="mat-name">Estiércol</div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-icon">&#9724;</div>
+        <div class="mat-name">Arcilla Roja</div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-icon">&#9644;</div>
+        <div class="mat-name">Brea</div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-icon">&#9883;</div>
+        <div class="mat-name">Composta</div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-icon">&#9670;</div>
+        <div class="mat-name">Piedra ¾ Azul</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COBERTURA -->
+<section class="cob-section">
+  <div class="section-inner reveal">
+    <div class="cob-layout">
+      <div>
+        <div class="section-label">Cobertura</div>
+        <div class="section-title">De Aguadilla a Yabucoa</div>
+        <p class="section-desc">Servimos los 78 municipios de Puerto Rico. Desde la costa norte hasta la montaña, tu material llega.</p>
+        <div class="cob-features">
+          <div class="cob-feature">
+            <div class="cob-feature-icon">&#128666;</div>
+            <div>
+              <div class="cob-feature-title">Flota propia</div>
+              <div class="cob-feature-desc">Camiones propios — sin intermediarios, sin sorpresas en precio.</div>
+            </div>
+          </div>
+          <div class="cob-feature">
+            <div class="cob-feature-icon">&#9201;</div>
+            <div>
+              <div class="cob-feature-title">Entrega rápida</div>
+              <div class="cob-feature-desc">Coordinamos para que el material esté en tu obra cuando lo necesites.</div>
+            </div>
+          </div>
+          <div class="cob-feature">
+            <div class="cob-feature-icon">&#128200;</div>
+            <div>
+              <div class="cob-feature-title">Precio transparente</div>
+              <div class="cob-feature-desc">Cotiza al instante en nuestro cotizador o por WhatsApp. Sin cargos ocultos.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cob-map">
+        <div class="cob-map-number">78</div>
+        <div class="cob-map-label">Municipios de Puerto Rico</div>
+        <div class="cob-map-sub">Cobertura completa en toda la isla</div>
+        <div class="cob-routes">
+          <div class="cob-route">
+            <div class="cob-route-dot" style="background:#4dabf7"></div>
+            <div>
+              <div class="cob-route-name">Costa Norte — PR-22</div>
+              <div class="cob-route-desc">Hatillo, Arecibo, Manatí, Bayamón, San Juan</div>
+            </div>
+          </div>
+          <div class="cob-route">
+            <div class="cob-route-dot" style="background:#ffd43b"></div>
+            <div>
+              <div class="cob-route-name">Sur — Carr. #10</div>
+              <div class="cob-route-desc">Ponce, Adjuntas, Utuado, Jayuya</div>
+            </div>
+          </div>
+          <div class="cob-route">
+            <div class="cob-route-dot" style="background:#69db7c"></div>
+            <div>
+              <div class="cob-route-name">Interior / Montaña</div>
+              <div class="cob-route-desc">Orocovis, Barranquitas, Ciales, Lares</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOTA -->
+<section class="flota-section">
+  <div class="section-inner reveal">
+    <div class="section-label">Flota</div>
+    <div class="section-title">Camiones para cada proyecto</div>
+    <p class="section-desc">Dos capacidades disponibles para ajustar a tu volumen y acceso.</p>
+    <div class="flota-grid">
+      <div class="flota-card">
+        <div class="flota-cap">16<span> m³</span></div>
+        <div class="flota-label">Camión Estándar</div>
+        <div class="flota-desc">Ideal para proyectos residenciales y accesos limitados. Maniobrable en espacios reducidos.</div>
+        <div class="flota-spec">
+          <span class="flota-tag">Dump Truck</span>
+          <span class="flota-tag">Acceso Estrecho</span>
+          <span class="flota-tag">Residencial</span>
+        </div>
+      </div>
+      <div class="flota-card">
+        <div class="flota-cap">20<span> m³</span></div>
+        <div class="flota-label">Camión de Alto Volumen</div>
+        <div class="flota-desc">Máxima capacidad para proyectos comerciales e industriales. Menos viajes, mejor precio por metro cúbico.</div>
+        <div class="flota-spec">
+          <span class="flota-tag">Dump Truck</span>
+          <span class="flota-tag">Alto Volumen</span>
+          <span class="flota-tag">Comercial</span>
+        </div>
+      </div>
+      <div class="flota-card">
+        <div class="flota-cap">18<span> m³ mín.</span></div>
+        <div class="flota-label">Mínimo por Viaje</div>
+        <div class="flota-desc">Cada viaje se optimiza para un mínimo de 18m³ por camión. Orden mínima total: 10m³.</div>
+        <div class="flota-spec">
+          <span class="flota-tag">Optimizado</span>
+          <span class="flota-tag">Min. 10m³ orden</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section>
+  <div class="section-inner reveal">
+    <div class="section-label">Proceso</div>
+    <div class="section-title">Así de fácil</div>
+    <p class="section-desc">De tu cotización a tu obra en pasos simples.</p>
+    <div class="proceso-grid">
+      <div class="proceso-step">
+        <div class="proceso-step-title">Cotiza</div>
+        <div class="proceso-step-desc">Usa el cotizador en línea o escríbenos por WhatsApp con tu material, cantidad y municipio.</div>
+      </div>
+      <div class="proceso-step">
+        <div class="proceso-step-title">Confirma</div>
+        <div class="proceso-step-desc">Revisamos tu orden, confirmamos precio y coordinamos fecha de entrega.</div>
+      </div>
+      <div class="proceso-step">
+        <div class="proceso-step-title">Recibe</div>
+        <div class="proceso-step-desc">Nuestros camiones llegan a tu proyecto con el material listo para descargar.</div>
+      </div>
+      <div class="proceso-step">
+        <div class="proceso-step-title">Repite</div>
+        <div class="proceso-step-desc">Clientes recurrentes reciben trato preferencial. Tu obra no para.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <div class="section-inner reveal">
+    <div class="section-label">Empieza ahora</div>
+    <div class="section-title">¿Listo para mover material?</div>
+    <p class="section-desc">Cotiza en segundos. Respuesta inmediata por WhatsApp o usa nuestro cotizador automático.</p>
+    <div class="cta-actions">
+      <a href="https://wa.me/17875975377?text=Hola%2C%20me%20interesa%20cotizar%20acarreo%20de%20materiales" class="btn btn-primary" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Escribir por WhatsApp
+      </a>
+      <a href="cotizador.html" class="btn btn-secondary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+        Cotizador Automático
+      </a>
+    </div>
+    <div class="cta-phone"><a href="tel:+17875975377">787-597-5377</a></div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <svg class="footer-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 250" height="56"><defs><clipPath id="fa"><path d="M119.16 121h136.5v86.95h-136.5z"/></clipPath><clipPath id="fb"><path d="M131 104.45h104V178H131z"/></clipPath></defs><g clip-path="url(#fa)"><path fill="#d5c299" d="M227.926 157.54l13.683-11.087c.996 4.73 1.664 8.895 1.664 13.774 0 5.515-.804 10.843-2.293 15.875l-33.511-29.614.96 22.578-9.144 9.258-.285 24.512-36.477-36.086 6.422 25.84-9.707 15.73a56.03 56.03 0 01-21.59-23.05l-18.445 13.734 43.086-43.086 12.574 12.113 32.375-31.906 13.973 13.508 23.754-21.89-8.852-3.614 19.68-2.676-2.324 17.93-3.672-8.09z" fill-rule="evenodd"/></g><g clip-path="url(#fb)"><path fill="#fff" d="M187.5 104.45c19.93 0 37.418 10.456 47.281 26.183l-13.492 12.433-14.086-13.617-32.375 31.914-12.601-12.133-27.895 27.895a55.671 55.671 0 01-2.61-16.898c0-30.805 24.973-55.778 55.778-55.778" fill-rule="evenodd"/></g></svg>
+  <div class="footer-company">Isla Prime Logistics LLC</div>
+  <div class="footer-addr">Hatillo, Puerto Rico</div>
+  <div class="footer-links">
+    <a href="index.html">Inicio</a>
+    <a href="materiales/index.html">Materiales</a>
+    <a href="cotizador.html">Cotizador</a>
+    <a href="contact.html">Contacto</a>
+  </div>
+  <div class="footer-copy">&copy; 2025 Isla Prime Logistics LLC. Todos los derechos reservados.</div>
+</footer>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+  crossorigin="anonymous"
+></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  els.forEach(function(el) { observer.observe(el); });
+});
+</script>
+</body>
+</html>

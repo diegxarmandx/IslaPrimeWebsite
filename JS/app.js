@@ -26,7 +26,7 @@ function addWelcomeMessage() {
 
 function setSendingState(isSending) {
   sendBtn.disabled = isSending;
-  sendBtn.textContent = isSending ? 'Sending...' : 'Send';
+  sendBtn.textContent = isSending ? 'Enviando...' : 'Enviar';
 }
 
 async function sendMessage() {
@@ -36,7 +36,7 @@ async function sendMessage() {
   addMessage(message, 'user');
   userInput.value = '';
   setSendingState(true);
-  addMessage('Thinking through your project details...', 'status');
+  addMessage('Analizando los detalles de tu proyecto...', 'status');
 
   try {
     const response = await fetch('https://isla-prime-ai-backend.onrender.com/chat', {
@@ -55,7 +55,7 @@ async function sendMessage() {
     addMessage(data.reply, 'assistant');
   } catch (error) {
     removeLastStatusMessage();
-    addMessage('Error connecting to the assistant. Please try again in a moment.', 'assistant');
+    addMessage('Hubo un error conectando con el asistente. Por favor intenta nuevamente en un momento.', 'assistant');
     console.error(error);
   } finally {
     setSendingState(false);
