@@ -18,16 +18,6 @@
   <!-- ═══════════════════════════════════════════════════════════════
        META PIXEL — Isla Prime Logistics
        Pixel ID: 1511457820689068
-       Events fired:
-         PageView          → on page load (standard)
-         cotizador_start   → first material selection
-         cotizador_material_selected → material chosen
-         cotizador_pueblo_selected   → pueblo chosen
-         cotizador_quantity_entered  → quantity > 0 entered
-         cotizador_complete / Lead   → result shown (qty ≥ 10)
-         cotizador_below_minimum     → qty entered < 10
-         whatsapp_click / Contact    → WA button tapped
-         cotizador_high_value        → quote total > $1,000
   ════════════════════════════════════════════════════════════════ -->
   <script>
     !function(f,b,e,v,n,t,s)
@@ -45,11 +35,16 @@
     <img height="1" width="1" style="display:none"
       src="https://www.facebook.com/tr?id=1511457820689068&ev=PageView&noscript=1"/>
   </noscript>
-  <!-- END META PIXEL -->
 
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
+    /* ═══════════════════════════════════════════════════════════════
+       COTIZADOR — namespaced (cot-*) styles to avoid colliding with
+       the global .hero / .navbar / .content rules in index.css.
+       The navbar HTML is unchanged so global nav styling still applies.
+    ═══════════════════════════════════════════════════════════════ */
+    .cot-wrap, .cot-wrap * { box-sizing: border-box; }
+
+    .cot-page {
       background: #1b1b1b;
       font-family: 'DM Sans', sans-serif;
       color: #f0ece4;
@@ -57,19 +52,18 @@
       padding-top: var(--nav-h, 78px);
     }
 
-    .site-navbar { font-family: var(--font-body, "Manrope", sans-serif); }
-
-    .hero {
+    /* HERO (renamed from .hero so the global .hero rule won't apply) */
+    .cot-hero {
       position: relative;
       background: linear-gradient(165deg, #1b1b1b 0%, #252525 50%, #2f2f2f 100%);
       min-height: auto;
       height: auto;
       display: block;
-      padding: 40px 24px 36px;
+      padding: 56px 24px 36px;
       text-align: center;
       overflow: hidden;
     }
-    .hero::before {
+    .cot-hero::before {
       content: '';
       position: absolute;
       top: -60%; left: -20%;
@@ -78,231 +72,346 @@
       z-index: 0;
       pointer-events: none;
     }
-    .hero > * { position: relative; z-index: 1; }
-    .hero-logo { width: 160px; margin: 0 auto 20px; }
-    .hero .hero-title {
-      font-size: 26px; font-weight: 800; color: #f0ece4;
-      line-height: 1.15; margin: 0 auto 8px; letter-spacing: -0.5px;
+    .cot-hero > * { position: relative; z-index: 1; }
+    .cot-hero-logo {
+      width: 160px;
+      margin: 0 auto 20px;
+      display: block;
+    }
+    .cot-hero-title {
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 28px !important;
+      font-weight: 800 !important;
+      color: #f0ece4 !important;
+      line-height: 1.15 !important;
+      margin: 0 auto 10px !important;
+      letter-spacing: -0.5px;
+      max-width: 360px;
+      text-align: center;
+      text-wrap: balance;
+    }
+    .cot-hero-title span { color: #d5c299 !important; }
+    .cot-hero-sub {
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 14px !important;
+      color: #9a9590 !important;
+      line-height: 1.5 !important;
       max-width: 340px;
+      margin: 0 auto !important;
+      font-weight: 500 !important;
       text-align: center;
     }
-    .hero .hero-title span { color: #d5c299; }
-    .hero .hero-sub {
-      font-size: 14px; color: #9a9590; line-height: 1.5;
-      max-width: 340px; margin: 0 auto;
-      font-weight: 500;
-      text-align: center;
+    .cot-hero-link {
+      display: inline-flex !important;
+      margin-top: 14px;
+      color: #d5c299 !important;
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      text-decoration: none !important;
     }
-    .hero-link {
-      display: inline-flex; margin-top: 14px;
-      color: #d5c299; font-size: 13px; font-weight: 700;
-      text-decoration: none;
-    }
-    .hero-bar {
+    .cot-hero-bar {
       height: 3px;
       background: linear-gradient(90deg, transparent, #d5c299, transparent);
-      margin-top: 28px; border-radius: 2px;
+      margin: 28px auto 0;
+      max-width: 420px;
+      border-radius: 2px;
     }
 
-    .steps {
-      display: flex; justify-content: center;
+    /* STEPS */
+    .cot-steps {
+      display: flex;
+      justify-content: center;
       padding: 24px 24px 8px;
-      max-width: 420px; margin: 0 auto;
+      max-width: 420px;
+      margin: 0 auto;
     }
-    .step {
-      flex: 1; display: flex; flex-direction: column;
-      align-items: center; position: relative;
+    .cot-step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
     }
-    .step-dot {
-      width: 32px; height: 32px; border-radius: 50%;
+    .cot-step-dot {
+      width: 32px; height: 32px;
+      border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       font-family: 'JetBrains Mono', monospace;
       font-size: 12px; font-weight: 600;
-      background: #2f2f2f; border: 2px solid rgba(213,194,153,0.18);
-      color: #8f877c; transition: all 0.3s ease; z-index: 1;
+      background: #2f2f2f;
+      border: 2px solid rgba(213,194,153,0.18);
+      color: #8f877c;
+      transition: all 0.3s ease;
+      z-index: 1;
     }
-    .step-dot.active {
+    .cot-step-dot.active {
       background: #d5c299; border-color: #d5c299;
       color: #1b1b1b; box-shadow: 0 0 16px rgba(213,194,153,0.3);
     }
-    .step-dot.done {
+    .cot-step-dot.done {
       background: rgba(213,194,153,0.15);
       border-color: #d5c299; color: #d5c299;
     }
-    .step-label {
-      font-size: 10px; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 0.8px; color: #8f877c;
-      margin-top: 6px; transition: color 0.3s ease;
+    .cot-step-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px; font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #8f877c;
+      margin-top: 6px;
+      transition: color 0.3s ease;
     }
-    .step-label.active { color: #d5c299; }
-    .step-label.done { color: #9a9590; }
-    .step-line {
-      position: absolute; top: 16px; left: 50%;
-      width: 100%; height: 2px; background: rgba(213,194,153,0.18); z-index: 0;
+    .cot-step-label.active { color: #d5c299; }
+    .cot-step-label.done { color: #9a9590; }
+    .cot-step-line {
+      position: absolute;
+      top: 16px; left: 50%;
+      width: 100%; height: 2px;
+      background: rgba(213,194,153,0.18);
+      z-index: 0;
     }
-    .step-line.done { background: rgba(213,194,153,0.4); }
-    .step:last-child .step-line { display: none; }
+    .cot-step-line.done { background: rgba(213,194,153,0.4); }
+    .cot-step:last-child .cot-step-line { display: none; }
 
-    .form-wrap {
+    /* FORM */
+    .cot-form {
       padding: 16px 24px 24px;
-      max-width: 420px; margin: 0 auto;
+      max-width: 420px;
+      margin: 0 auto;
     }
-    .field { margin-bottom: 20px; }
-    .label {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 12px; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 1px; color: #9a9590; margin-bottom: 8px;
+    .cot-field { margin-bottom: 20px; }
+    .cot-label {
+      display: flex; align-items: center;
+      gap: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px; font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #9a9590;
+      margin-bottom: 8px;
     }
-    .label svg { color: #d5c299; opacity: 0.7; }
-    .select, .input {
-      width: 100%; padding: 14px 16px;
-      background: #252525; border: 1.5px solid rgba(213,194,153,0.14);
-      border-radius: 10px; color: #f0ece4;
+    .cot-label svg { color: #d5c299; opacity: 0.7; flex-shrink: 0; }
+    .cot-select, .cot-input {
+      width: 100%;
+      padding: 14px 16px;
+      background: #252525;
+      border: 1.5px solid rgba(213,194,153,0.14);
+      border-radius: 10px;
+      color: #f0ece4;
       font-family: 'DM Sans', sans-serif;
       font-size: 15px; font-weight: 500;
-      outline: none; transition: all 0.25s ease;
-      -webkit-appearance: none; appearance: none;
+      outline: none;
+      transition: all 0.25s ease;
+      -webkit-appearance: none;
+      appearance: none;
     }
-    .select:focus, .input:focus {
+    .cot-select:focus, .cot-input:focus {
       border-color: #d5c299;
       box-shadow: 0 0 0 3px rgba(213,194,153,0.1);
     }
-    .select {
+    .cot-select {
       cursor: pointer;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23d5c299' stroke-width='2' fill='none'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 16px center;
       padding-right: 40px;
     }
-    .select option { background: #252525; color: #f0ece4; }
+    .cot-select option { background: #252525; color: #f0ece4; }
 
-    .pueblo-wrap { position: relative; }
-    .pueblo-drop {
-      position: absolute; top: calc(100% + 2px);
-      left: 0; right: 0; max-height: 200px;
-      overflow-y: auto; background: #252525;
+    .cot-pueblo-wrap { position: relative; }
+    .cot-pueblo-drop {
+      position: absolute;
+      top: calc(100% + 2px);
+      left: 0; right: 0;
+      max-height: 200px;
+      overflow-y: auto;
+      background: #252525;
       border: 1.5px solid rgba(213,194,153,0.14);
-      border-radius: 0 0 10px 10px; z-index: 10;
+      border-radius: 0 0 10px 10px;
+      z-index: 10;
     }
-    .pueblo-item {
-      padding: 12px 16px; cursor: pointer;
-      font-size: 14px; color: #d8d0c5;
-      transition: all 0.15s; border-bottom: 1px solid #2f2f2f;
+    .cot-pueblo-item {
+      padding: 12px 16px;
+      cursor: pointer;
+      font-size: 14px;
+      color: #d8d0c5;
+      transition: all 0.15s;
+      border-bottom: 1px solid #2f2f2f;
     }
-    .pueblo-item:last-child { border-bottom: none; }
-    .pueblo-item:hover {
-      background: rgba(213,194,153,0.08); color: #d5c299;
+    .cot-pueblo-item:last-child { border-bottom: none; }
+    .cot-pueblo-item:hover {
+      background: rgba(213,194,153,0.08);
+      color: #d5c299;
     }
 
-    .qty-wrap { display: flex; align-items: center; gap: 10px; }
-    .qty-unit {
+    .cot-qty-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .cot-qty-unit {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 14px; font-weight: 500; color: #d5c299;
+      font-size: 14px; font-weight: 500;
+      color: #d5c299;
     }
 
-    .result {
-      margin: 4px 24px 16px;
-      max-width: 420px; margin-left: auto; margin-right: auto;
-      border-radius: 14px; overflow: hidden;
-      animation: resultIn 0.4s ease-out;
+    /* RESULT CARD */
+    .cot-result {
+      margin: 4px auto 16px;
+      max-width: 420px;
+      border-radius: 14px;
+      overflow: hidden;
+      animation: cotIn 0.4s ease-out;
       border: 1px solid rgba(213,194,153,0.15);
     }
-    @keyframes resultIn {
+    @keyframes cotIn {
       from { opacity: 0; transform: translateY(20px) scale(0.98); }
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
-    .result-top {
+    .cot-result-top {
       background: linear-gradient(135deg, #d5c299, #b8a17a);
-      padding: 24px; text-align: center;
-      position: relative; overflow: hidden;
+      padding: 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    .result-top::before {
+    .cot-result-top::before {
       content: '';
-      position: absolute; top: -50%; right: -30%;
+      position: absolute;
+      top: -50%; right: -30%;
       width: 60%; height: 200%;
       background: radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 70%);
       pointer-events: none;
     }
-    .result-label {
-      font-size: 11px; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 1.5px; color: rgba(12,17,23,0.6); margin-bottom: 4px;
+    .cot-result-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px; font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: rgba(12,17,23,0.6);
+      margin-bottom: 4px;
     }
-    .result-total {
-      font-size: 38px; font-weight: 800; color: #1b1b1b;
-      letter-spacing: -1px; line-height: 1;
+    .cot-result-total {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 38px; font-weight: 800;
+      color: #1b1b1b;
+      letter-spacing: -1px;
+      line-height: 1;
     }
-    .result-body { background: #252525; padding: 16px 20px; }
-    .result-row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 12px 0; border-bottom: 1px solid rgba(213,194,153,0.5);
+    .cot-result-body {
+      background: #252525;
+      padding: 16px 20px;
     }
-    .result-row:last-child { border-bottom: none; }
-    .result-row-left {
-      display: flex; align-items: center; gap: 10px;
-      color: #9a9590; font-size: 13px; font-weight: 500;
+    .cot-result-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(213,194,153,0.5);
     }
-    .result-row-left svg { color: #8f877c; flex-shrink: 0; }
-    .result-row-val {
+    .cot-result-row:last-child { border-bottom: none; }
+    .cot-result-row-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #9a9590;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; font-weight: 500;
+    }
+    .cot-result-row-left svg {
+      color: #8f877c;
+      flex-shrink: 0;
+    }
+    .cot-result-row-val {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 14px; font-weight: 600; color: #f0ece4;
+      font-size: 14px; font-weight: 600;
+      color: #f0ece4;
     }
-    .result-row-val.accent { color: #d5c299; }
+    .cot-result-row-val.accent { color: #d5c299; }
 
-    .min-msg {
-      margin: 4px 24px 16px;
-      max-width: 420px; margin-left: auto; margin-right: auto;
+    .cot-min-msg {
+      margin: 4px auto 16px;
+      max-width: 420px;
       background: rgba(239,68,68,0.08);
       border: 1px solid rgba(239,68,68,0.2);
-      border-radius: 10px; padding: 16px 20px;
-      text-align: center; color: #ef4444;
+      border-radius: 10px;
+      padding: 16px 20px;
+      text-align: center;
+      color: #ef4444;
+      font-family: 'DM Sans', sans-serif;
       font-size: 14px; font-weight: 600;
-      animation: resultIn 0.3s ease-out;
+      animation: cotIn 0.3s ease-out;
     }
 
-    .wa-wrap {
+    /* WHATSAPP BUTTON */
+    .cot-wa-wrap {
       padding: 0 24px 8px;
-      max-width: 420px; margin: 0 auto;
+      max-width: 420px;
+      margin: 0 auto;
     }
-    .wa-btn {
-      display: flex; align-items: center; justify-content: center;
-      gap: 10px; width: 100%; padding: 16px;
-      background: #25d366; border: none; border-radius: 12px;
-      color: #f0ece4; font-family: 'DM Sans', sans-serif;
-      font-size: 16px; font-weight: 700;
-      cursor: pointer; text-decoration: none;
+    .cot-wa-btn {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 16px;
+      background: #25d366;
+      border: none;
+      border-radius: 12px;
+      color: #f0ece4 !important;
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 16px !important;
+      font-weight: 700 !important;
+      cursor: pointer;
+      text-decoration: none !important;
       transition: all 0.25s ease;
       box-shadow: 0 4px 16px rgba(37,211,102,0.25);
     }
-    .wa-btn:hover {
-      background: #1f9f59; transform: translateY(-1px);
+    .cot-wa-btn:hover {
+      background: #1f9f59;
+      transform: translateY(-1px);
       box-shadow: 0 6px 24px rgba(37,211,102,0.35);
+      color: #f0ece4 !important;
     }
 
-    .disclaimer {
-      text-align: center; padding: 12px 24px 32px;
-      font-size: 11px; color: #9a9590;
-      max-width: 420px; margin: 0 auto;
+    .cot-disclaimer {
+      text-align: center;
+      padding: 12px 24px 32px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      color: #9a9590;
+      max-width: 420px;
+      margin: 0 auto;
     }
 
-    .footer {
-      text-align: center; padding: 20px 24px 32px;
+    .cot-footer {
+      text-align: center;
+      padding: 20px 24px 60px;
       border-top: 1px solid #2f2f2f;
-      max-width: 420px; margin: 0 auto;
+      max-width: 420px;
+      margin: 0 auto;
       background: #1b1b1b;
       color: #f0ece4;
-      box-shadow: none;
     }
-    .footer-brand {
-      font-size: 11px; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 1.5px; color: #9a9590;
+    .cot-footer-brand {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px; font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #9a9590;
     }
-    .footer-link {
-      display: inline-block; margin-top: 8px;
-      font-size: 12px; color: #d5c299;
-      text-decoration: none; font-weight: 500;
+    .cot-footer-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: #d5c299 !important;
+      text-decoration: none !important;
+      font-weight: 500;
     }
 
-    .hidden { display: none; }
+    .cot-hidden { display: none !important; }
   </style>
 </head>
 <body>
@@ -338,82 +447,85 @@
     </div>
   </nav>
 
-  <main id="main-content">
+  <main id="main-content" class="cot-page">
+    <div class="cot-wrap">
 
-  <!-- HERO -->
-  <div class="hero">
-    <img class="hero-logo" src="assets/photos/nav-logo.png" alt="Isla Prime Logistics" onerror="this.style.display='none'">
-    <h1 class="hero-title">Cotiza tu <span>acarreo</span><br>al instante</h1>
-    <p class="hero-sub">Selecciona material, destino y cantidad.<br>Recibe tu precio en segundos.</p>
-    <a class="hero-link" href="acarreo.html">Ver detalles del servicio de acarreo</a>
-    <div class="hero-bar"></div>
-  </div>
-
-  <!-- STEPS -->
-  <div class="steps">
-    <div class="step">
-      <div class="step-dot active" id="step1">1</div>
-      <span class="step-label active" id="stepLabel1">Material</span>
-      <div class="step-line" id="stepLine1"></div>
-    </div>
-    <div class="step">
-      <div class="step-dot" id="step2">2</div>
-      <span class="step-label" id="stepLabel2">Destino</span>
-      <div class="step-line" id="stepLine2"></div>
-    </div>
-    <div class="step">
-      <div class="step-dot" id="step3">3</div>
-      <span class="step-label" id="stepLabel3">Cantidad</span>
-    </div>
-  </div>
-
-  <!-- FORM -->
-  <div class="form-wrap">
-    <div class="field">
-      <label class="label">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-        Material
-      </label>
-      <select class="select" id="material" onchange="calculate()">
-        <option value="">Seleccionar material...</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label class="label">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Pueblo de destino
-      </label>
-      <div class="pueblo-wrap">
-        <input class="input" type="text" id="puebloInput" placeholder="Buscar pueblo..." autocomplete="off"
-          oninput="filterPueblos()" onfocus="showPuebloList()" onblur="setTimeout(hidePuebloList, 200)">
-        <div class="pueblo-drop hidden" id="puebloDrop"></div>
+      <!-- HERO -->
+      <div class="cot-hero">
+        <img class="cot-hero-logo" src="assets/photos/nav-logo.png" alt="Isla Prime Logistics" onerror="this.style.display='none'">
+        <h1 class="cot-hero-title">Cotiza tu <span>acarreo</span><br>al instante</h1>
+        <p class="cot-hero-sub">Selecciona material, destino y cantidad.<br>Recibe tu precio en segundos.</p>
+        <a class="cot-hero-link" href="acarreo.html">Ver detalles del servicio de acarreo</a>
+        <div class="cot-hero-bar"></div>
       </div>
-    </div>
 
-    <div class="field">
-      <label class="label">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-        Cantidad
-      </label>
-      <div class="qty-wrap">
-        <input class="input" type="number" id="quantity" min="1" placeholder="0" oninput="calculate()">
-        <span class="qty-unit">m³</span>
+      <!-- STEPS -->
+      <div class="cot-steps">
+        <div class="cot-step">
+          <div class="cot-step-dot active" id="step1">1</div>
+          <span class="cot-step-label active" id="stepLabel1">Material</span>
+          <div class="cot-step-line" id="stepLine1"></div>
+        </div>
+        <div class="cot-step">
+          <div class="cot-step-dot" id="step2">2</div>
+          <span class="cot-step-label" id="stepLabel2">Destino</span>
+          <div class="cot-step-line" id="stepLine2"></div>
+        </div>
+        <div class="cot-step">
+          <div class="cot-step-dot" id="step3">3</div>
+          <span class="cot-step-label" id="stepLabel3">Cantidad</span>
+        </div>
       </div>
+
+      <!-- FORM -->
+      <div class="cot-form">
+        <div class="cot-field">
+          <label class="cot-label">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            Material
+          </label>
+          <select class="cot-select" id="material" onchange="calculate()">
+            <option value="">Seleccionar material...</option>
+          </select>
+        </div>
+
+        <div class="cot-field">
+          <label class="cot-label">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Pueblo de destino
+          </label>
+          <div class="cot-pueblo-wrap">
+            <input class="cot-input" type="text" id="puebloInput" placeholder="Buscar pueblo..." autocomplete="off"
+              oninput="filterPueblos()" onfocus="showPuebloList()" onblur="setTimeout(hidePuebloList, 200)">
+            <div class="cot-pueblo-drop cot-hidden" id="puebloDrop"></div>
+          </div>
+        </div>
+
+        <div class="cot-field">
+          <label class="cot-label">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            Cantidad
+          </label>
+          <div class="cot-qty-wrap">
+            <input class="cot-input" type="number" id="quantity" min="1" placeholder="0" oninput="calculate()">
+            <span class="cot-qty-unit">m³</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULTS -->
+      <div id="minMsg" class="cot-min-msg cot-hidden">Mínimo de 10 m³ por orden</div>
+      <div id="resultCard" class="cot-hidden"></div>
+      <div id="waWrap" class="cot-wa-wrap cot-hidden"></div>
+      <div id="disclaimer" class="cot-disclaimer cot-hidden">Cotización sujeta a confirmación.</div>
+
+      <!-- FOOTER -->
+      <div class="cot-footer" id="footer">
+        <div class="cot-footer-brand">Isla Prime Logistics</div>
+        <a class="cot-footer-link" href="acarreo.html">Servicio de acarreo</a>
+      </div>
+
     </div>
-  </div>
-
-  <!-- RESULTS -->
-  <div id="minMsg" class="min-msg hidden">Mínimo de 10 m³ por orden</div>
-  <div id="resultCard" class="hidden"></div>
-  <div id="waWrap" class="wa-wrap hidden"></div>
-  <div id="disclaimer" class="disclaimer hidden">Cotización sujeta a confirmación.</div>
-
-  <!-- FOOTER -->
-  <div class="footer" id="footer">
-    <div class="footer-brand">Isla Prime Logistics</div>
-    <a class="footer-link" href="acarreo.html">Servicio de acarreo</a>
-  </div>
   </main>
 
 <script
@@ -533,35 +645,22 @@ function hav(lat1, lng1, lat2, lng2) {
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 }
 
-// ─── STATE ──────────────────────────────────────────────────────────
 let selectedPueblo = null;
 
 // ─── PIXEL HELPERS ──────────────────────────────────────────────────
-// Safe wrapper — if fbq fails for any reason, the cotizador still works
 function pixelTrack(eventName, params) {
   try {
     if (typeof fbq === 'function') {
-      if (params) {
-        fbq('trackCustom', eventName, params);
-      } else {
-        fbq('trackCustom', eventName);
-      }
+      if (params) { fbq('trackCustom', eventName, params); }
+      else { fbq('trackCustom', eventName); }
     }
   } catch(e) {}
 }
-
 function pixelTrackStandard(eventName, params) {
-  try {
-    if (typeof fbq === 'function') {
-      fbq('track', eventName, params || {});
-    }
-  } catch(e) {}
+  try { if (typeof fbq === 'function') { fbq('track', eventName, params || {}); } }
+  catch(e) {}
 }
-
-// ─── PIXEL TRIGGER FLAGS (fire each event only once per session) ─────
-let _pixelStartFired   = false;
-let _pixelPuebloFired  = false;
-let _pixelQtyFired     = false;
+let _pixelStartFired = false, _pixelPuebloFired = false, _pixelQtyFired = false;
 
 // ─── INIT ───────────────────────────────────────────────────────────
 const materialSelect = document.getElementById('material');
@@ -576,25 +675,22 @@ function filterPueblos() {
   selectedPueblo = null;
   const val = document.getElementById('puebloInput').value.toLowerCase();
   const drop = document.getElementById('puebloDrop');
-  if (!val) { drop.classList.add('hidden'); return; }
+  if (!val) { drop.classList.add('cot-hidden'); return; }
   const matches = PUEBLOS.filter(p => p.name.toLowerCase().includes(val));
   drop.innerHTML = matches.length
-    ? matches.map(p => `<div class="pueblo-item" onmousedown="selectPueblo('${p.name}')">${p.name}</div>`).join('')
-    : '<div class="pueblo-item" style="color:#8f877c;cursor:default">No encontrado</div>';
-  drop.classList.remove('hidden');
+    ? matches.map(p => `<div class="cot-pueblo-item" onmousedown="selectPueblo('${p.name.replace(/'/g, "\\'")}')">${p.name}</div>`).join('')
+    : '<div class="cot-pueblo-item" style="color:#8f877c;cursor:default">No encontrado</div>';
+  drop.classList.remove('cot-hidden');
   calculate();
 }
 function selectPueblo(name) {
   document.getElementById('puebloInput').value = name;
   selectedPueblo = name;
-  document.getElementById('puebloDrop').classList.add('hidden');
-
-  // ── EVENT: cotizador_pueblo_selected ────────────────────────────
+  document.getElementById('puebloDrop').classList.add('cot-hidden');
   if (!_pixelPuebloFired) {
     _pixelPuebloFired = true;
     pixelTrack('cotizador_pueblo_selected', { pueblo: name });
   }
-
   calculate();
 }
 function showPuebloList() {
@@ -605,7 +701,7 @@ function showPuebloList() {
   filterPueblos();
 }
 function hidePuebloList() {
-  document.getElementById('puebloDrop').classList.add('hidden');
+  document.getElementById('puebloDrop').classList.add('cot-hidden');
   if (!selectedPueblo) {
     document.getElementById('puebloInput').value = '';
     calculate();
@@ -626,35 +722,30 @@ function calculate() {
   const minMsg = document.getElementById('minMsg');
   const footer = document.getElementById('footer');
 
-  resultCard.classList.add('hidden');
-  waWrap.classList.add('hidden');
-  disc.classList.add('hidden');
-  minMsg.classList.add('hidden');
+  resultCard.classList.add('cot-hidden');
+  waWrap.classList.add('cot-hidden');
+  disc.classList.add('cot-hidden');
+  minMsg.classList.add('cot-hidden');
   footer.style.display = '';
 
-  // ── EVENT: cotizador_start (first time a material is selected) ───
   if (material && !_pixelStartFired) {
     _pixelStartFired = true;
     pixelTrack('cotizador_start');
   }
-
-  // ── EVENT: cotizador_material_selected ───────────────────────────
   if (material) {
     pixelTrack('cotizador_material_selected', { material: material });
   }
 
   if (!material || !pueblo || !qty || qty <= 0) return;
 
-  // ── EVENT: cotizador_quantity_entered ────────────────────────────
   if (qty > 0 && !_pixelQtyFired) {
     _pixelQtyFired = true;
     pixelTrack('cotizador_quantity_entered', { cantidad: qty });
   }
 
-  // ── EVENT: cotizador_below_minimum ───────────────────────────────
   if (qty < 10) {
     pixelTrack('cotizador_below_minimum', { cantidad: qty });
-    minMsg.classList.remove('hidden');
+    minMsg.classList.remove('cot-hidden');
     return;
   }
 
@@ -681,10 +772,8 @@ function calculate() {
   options.sort((a, b) => a.total - b.total);
   const best = options[0];
 
-  // Store best quote for logging when WhatsApp button is clicked
   window.currentQuote = { material, pueblo, qty, best };
 
-  // ── EVENT: cotizador_complete → fires as standard "Lead" ─────────
   pixelTrackStandard('Lead', {
     content_name: material,
     content_category: 'acarreo',
@@ -692,97 +781,78 @@ function calculate() {
     currency: 'USD'
   });
   pixelTrack('cotizador_complete', {
-    material: material,
-    pueblo: pueblo,
-    cantidad: qty,
-    viajes: best.trips,
-    total: best.total
+    material: material, pueblo: pueblo, cantidad: qty,
+    viajes: best.trips, total: best.total
   });
-
-  // ── EVENT: cotizador_high_value (quote > $1,000) ─────────────────
   if (best.total > 1000) {
     pixelTrack('cotizador_high_value', {
-      material: material,
-      pueblo: pueblo,
-      total: best.total
+      material: material, pueblo: pueblo, total: best.total
     });
   }
 
   const fmt = n => n.toLocaleString('en-US', { minimumFractionDigits: 2 });
 
   resultCard.innerHTML = `
-    <div class="result-top">
-      <div class="result-label">Cotización estimada</div>
-      <div class="result-total">$${fmt(best.total)}</div>
+    <div class="cot-result-top">
+      <div class="cot-result-label">Cotización estimada</div>
+      <div class="cot-result-total">$${fmt(best.total)}</div>
     </div>
-    <div class="result-body">
-      <div class="result-row">
-        <div class="result-row-left">
+    <div class="cot-result-body">
+      <div class="cot-result-row">
+        <div class="cot-result-row-left">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
           Material
         </div>
-        <div class="result-row-val accent">${material}</div>
+        <div class="cot-result-row-val accent">${material}</div>
       </div>
-      <div class="result-row">
-        <div class="result-row-left">
+      <div class="cot-result-row">
+        <div class="cot-result-row-left">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
           Destino
         </div>
-        <div class="result-row-val">${pueblo}</div>
+        <div class="cot-result-row-val">${pueblo}</div>
       </div>
-      <div class="result-row">
-        <div class="result-row-left">
+      <div class="cot-result-row">
+        <div class="cot-result-row-left">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
           Cantidad
         </div>
-        <div class="result-row-val">${qty} m³</div>
+        <div class="cot-result-row-val">${qty} m³</div>
       </div>
-      <div class="result-row">
-        <div class="result-row-left">
+      <div class="cot-result-row">
+        <div class="cot-result-row-left">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
           Viajes
         </div>
-        <div class="result-row-val accent">${best.trips} viaje${best.trips > 1 ? 's' : ''}</div>
+        <div class="cot-result-row-val accent">${best.trips} viaje${best.trips > 1 ? 's' : ''}</div>
       </div>
     </div>`;
-  resultCard.className = 'result';
+  resultCard.className = 'cot-result';
 
   const waMsg = encodeURIComponent(`Hola, me interesa una cotización:\n\nMaterial: ${material}\nDestino: ${pueblo}\nCantidad: ${qty} m³\nViajes: ${best.trips}\nTotal estimado: $${fmt(best.total)}`);
   waWrap.innerHTML = `
-    <a class="wa-btn" href="https://wa.me/17875975377?text=${waMsg}" target="_blank" rel="noopener noreferrer" onclick="onWhatsAppClick()">
+    <a class="cot-wa-btn" href="https://wa.me/17875975377?text=${waMsg}" target="_blank" rel="noopener noreferrer" onclick="onWhatsAppClick()">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="#f0ece4"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Solicitar Cotización
     </a>`;
-  waWrap.classList.remove('hidden');
-  disc.classList.remove('hidden');
+  waWrap.classList.remove('cot-hidden');
+  disc.classList.remove('cot-hidden');
   footer.style.display = 'none';
 }
 
-// ── EVENT: whatsapp_click → fires as standard "Contact" ─────────────
 function onWhatsAppClick() {
-  // Fire standard Contact event (Meta's recommended event for WA clicks)
   pixelTrackStandard('Contact');
-
-  // Fire custom event with full quote details
   if (window.currentQuote) {
     const q = window.currentQuote;
-    const fmt = n => n.toLocaleString('en-US', { minimumFractionDigits: 2 });
     pixelTrack('whatsapp_click', {
-      material: q.material,
-      pueblo: q.pueblo,
-      cantidad: q.qty,
-      viajes: q.best.trips,
-      total: q.best.total,
-      value: q.best.total,
-      currency: 'USD'
+      material: q.material, pueblo: q.pueblo, cantidad: q.qty,
+      viajes: q.best.trips, total: q.best.total,
+      value: q.best.total, currency: 'USD'
     });
   }
-
-  // Also log to Google Sheets
   logCurrentQuote();
 }
 
-// ─── STEP INDICATORS ────────────────────────────────────────────────
 function updateSteps(mat, pub, qty) {
   const s = [
     { done: !!mat, active: !mat },
@@ -792,12 +862,12 @@ function updateSteps(mat, pub, qty) {
   s.forEach((st, i) => {
     const dot = document.getElementById('step' + (i+1));
     const label = document.getElementById('stepLabel' + (i+1));
-    dot.className = 'step-dot' + (st.done ? ' done' : st.active ? ' active' : '');
+    dot.className = 'cot-step-dot' + (st.done ? ' done' : st.active ? ' active' : '');
     dot.textContent = st.done ? '✓' : (i+1);
-    label.className = 'step-label' + (st.done ? ' done' : st.active ? ' active' : '');
+    label.className = 'cot-step-label' + (st.done ? ' done' : st.active ? ' active' : '');
     if (i < 2) {
       const line = document.getElementById('stepLine' + (i+1));
-      line.className = 'step-line' + (st.done ? ' done' : '');
+      line.className = 'cot-step-line' + (st.done ? ' done' : '');
     }
   });
 }
@@ -805,39 +875,25 @@ function updateSteps(mat, pub, qty) {
 // ─── LOG TO GOOGLE SHEETS ───────────────────────────────────────────
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbz449LMkEwDK02ds2igKccT3md3SwVuPtnDqAyxrxRQIgAlCWvaUft9FVPJByKtJkBc/exec';
 let lastLog = '';
-
 function logCurrentQuote() {
   if (!window.currentQuote) return;
   const q = window.currentQuote;
   logToSheet(q.material, q.pueblo, q.qty, q.best);
 }
-
 function logToSheet(material, destino, cantidad, best) {
-  // Prevent duplicate logs for same quote
   const key = material + destino + cantidad;
   if (key === lastLog) return;
   lastLog = key;
-
   const now = new Date();
   const fecha = now.toLocaleDateString('es-PR');
   const hora = now.toLocaleTimeString('es-PR', { hour: '2-digit', minute: '2-digit' });
-
   const payload = {
-    fecha: fecha,
-    hora: hora,
-    material: material,
-    destino: destino,
-    cantidad: cantidad,
-    viajes: best.trips,
-    total: best.total,
-    transporte: best.transport,
-    chofer: best.driver,
-    costoMaterial: best.matCost,
-    ventaMaterial: best.mat,
-    peajes: best.tolls,
-    cantera: best.quarry.location
+    fecha: fecha, hora: hora, material: material, destino: destino,
+    cantidad: cantidad, viajes: best.trips, total: best.total,
+    transporte: best.transport, chofer: best.driver,
+    costoMaterial: best.matCost, ventaMaterial: best.mat,
+    peajes: best.tolls, cantera: best.quarry.location
   };
-
   const encoded = encodeURIComponent(JSON.stringify(payload));
   const img = new Image();
   img.src = SHEET_URL + '?data=' + encoded;
