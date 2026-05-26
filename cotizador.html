@@ -5,20 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cotizador - Isla Prime Logistics</title>
   <meta name="description" content="Cotiza tu acarreo de materiales al instante. Piedra, arena, top soil y más. Servicio a toda Puerto Rico.">
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT"
-    crossorigin="anonymous"
-  >
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./css/index.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <!-- ═══════════════════════════════════════════════════════════════
-       META PIXEL — Isla Prime Logistics
-       Pixel ID: 1511457820689068
-  ════════════════════════════════════════════════════════════════ -->
+  <!-- META PIXEL — Pixel ID: 1511457820689068 -->
   <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -31,406 +24,408 @@
     fbq('init', '1511457820689068');
     fbq('track', 'PageView');
   </script>
-  <noscript>
-    <img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=1511457820689068&ev=PageView&noscript=1"/>
-  </noscript>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1511457820689068&ev=PageView&noscript=1"/></noscript>
 
+  <!-- COTIZADOR STYLES — loaded LAST so they win the cascade against index.css -->
   <style>
-    /* ═══════════════════════════════════════════════════════════════
-       COTIZADOR — namespaced (cot-*) styles to avoid colliding with
-       the global .hero / .navbar / .content rules in index.css.
-       The navbar HTML is unchanged so global nav styling still applies.
-    ═══════════════════════════════════════════════════════════════ */
-    .cot-wrap, .cot-wrap * { box-sizing: border-box; }
-
-    .cot-page {
-      background: #1b1b1b;
-      font-family: 'DM Sans', sans-serif;
-      color: #f0ece4;
-      min-height: 100vh;
-      padding-top: var(--nav-h, 78px);
-    }
-
-    /* HERO (renamed from .hero so the global .hero rule won't apply) */
-    .cot-hero {
-      position: relative;
-      background: linear-gradient(165deg, #1b1b1b 0%, #252525 50%, #2f2f2f 100%);
-      min-height: auto;
-      height: auto;
-      display: block;
-      padding: 56px 24px 36px;
-      text-align: center;
-      overflow: hidden;
-    }
-    .cot-hero::before {
-      content: '';
-      position: absolute;
-      top: -60%; left: -20%;
-      width: 140%; height: 200%;
-      background: radial-gradient(ellipse at center, rgba(213,194,153,0.06) 0%, transparent 70%);
-      z-index: 0;
-      pointer-events: none;
-    }
-    .cot-hero > * { position: relative; z-index: 1; }
-    .cot-hero-logo {
-      width: 160px;
-      margin: 0 auto 20px;
-      display: block;
-    }
-    .cot-hero-title {
+    /* Ultra-high specificity using #cot-app to defeat ALL global rules */
+    #cot-app {
+      display: block !important;
+      background: #1b1b1b !important;
+      color: #f0ece4 !important;
       font-family: 'DM Sans', sans-serif !important;
-      font-size: 28px !important;
+      padding-top: var(--nav-h, 78px) !important;
+      min-height: 100vh !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+    #cot-app * { box-sizing: border-box !important; }
+
+    /* HERO — completely override any .hero rules */
+    #cot-app .cot-hero {
+      position: relative !important;
+      background: linear-gradient(165deg, #1b1b1b 0%, #252525 50%, #2f2f2f 100%) !important;
+      min-height: auto !important;
+      height: auto !important;
+      max-height: none !important;
+      display: block !important;
+      padding: 48px 24px 36px !important;
+      text-align: center !important;
+      overflow: hidden !important;
+      grid-template-columns: none !important;
+      align-items: initial !important;
+    }
+    #cot-app .cot-hero::before {
+      content: '' !important;
+      position: absolute !important;
+      top: -60% !important; left: -20% !important;
+      width: 140% !important; height: 200% !important;
+      background: radial-gradient(ellipse at center, rgba(213,194,153,0.06) 0%, transparent 70%) !important;
+      z-index: 0 !important;
+      pointer-events: none !important;
+    }
+    #cot-app .cot-hero > * { position: relative !important; z-index: 1 !important; }
+    #cot-app .cot-hero-logo {
+      width: 140px !important;
+      height: auto !important;
+      margin: 0 auto 18px !important;
+      display: block !important;
+      max-width: 140px !important;
+    }
+    #cot-app .cot-hero-title {
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 30px !important;
       font-weight: 800 !important;
       color: #f0ece4 !important;
       line-height: 1.15 !important;
       margin: 0 auto 10px !important;
-      letter-spacing: -0.5px;
-      max-width: 360px;
-      text-align: center;
-      text-wrap: balance;
+      letter-spacing: -0.5px !important;
+      max-width: 360px !important;
+      text-align: center !important;
+      padding: 0 !important;
+      text-transform: none !important;
     }
-    .cot-hero-title span { color: #d5c299 !important; }
-    .cot-hero-sub {
+    #cot-app .cot-hero-title span { color: #d5c299 !important; }
+    #cot-app .cot-hero-sub {
       font-family: 'DM Sans', sans-serif !important;
       font-size: 14px !important;
       color: #9a9590 !important;
       line-height: 1.5 !important;
-      max-width: 340px;
+      max-width: 340px !important;
       margin: 0 auto !important;
       font-weight: 500 !important;
-      text-align: center;
+      text-align: center !important;
+      padding: 0 !important;
     }
-    .cot-hero-link {
-      display: inline-flex !important;
-      margin-top: 14px;
+    #cot-app .cot-hero-link {
+      display: inline-block !important;
+      margin-top: 14px !important;
       color: #d5c299 !important;
       font-size: 13px !important;
       font-weight: 700 !important;
       text-decoration: none !important;
     }
-    .cot-hero-bar {
-      height: 3px;
-      background: linear-gradient(90deg, transparent, #d5c299, transparent);
-      margin: 28px auto 0;
-      max-width: 420px;
-      border-radius: 2px;
+    #cot-app .cot-hero-bar {
+      height: 3px !important;
+      background: linear-gradient(90deg, transparent, #d5c299, transparent) !important;
+      margin: 24px auto 0 !important;
+      max-width: 420px !important;
+      width: 100% !important;
+      border-radius: 2px !important;
     }
 
     /* STEPS */
-    .cot-steps {
-      display: flex;
-      justify-content: center;
-      padding: 24px 24px 8px;
-      max-width: 420px;
-      margin: 0 auto;
+    #cot-app .cot-steps {
+      display: flex !important;
+      justify-content: center !important;
+      padding: 24px 24px 8px !important;
+      max-width: 420px !important;
+      margin: 0 auto !important;
+      gap: 0 !important;
     }
-    .cot-step {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
+    #cot-app .cot-step {
+      flex: 1 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      position: relative !important;
+      text-align: center !important;
     }
-    .cot-step-dot {
-      width: 32px; height: 32px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px; font-weight: 600;
-      background: #2f2f2f;
-      border: 2px solid rgba(213,194,153,0.18);
-      color: #8f877c;
-      transition: all 0.3s ease;
-      z-index: 1;
+    #cot-app .cot-step-dot {
+      width: 32px !important; height: 32px !important;
+      border-radius: 50% !important;
+      display: flex !important; align-items: center !important; justify-content: center !important;
+      font-family: 'JetBrains Mono', monospace !important;
+      font-size: 12px !important; font-weight: 600 !important;
+      background: #2f2f2f !important;
+      border: 2px solid rgba(213,194,153,0.18) !important;
+      color: #8f877c !important;
+      z-index: 1 !important;
+      padding: 0 !important;
     }
-    .cot-step-dot.active {
-      background: #d5c299; border-color: #d5c299;
-      color: #1b1b1b; box-shadow: 0 0 16px rgba(213,194,153,0.3);
+    #cot-app .cot-step-dot.active {
+      background: #d5c299 !important; border-color: #d5c299 !important;
+      color: #1b1b1b !important; box-shadow: 0 0 16px rgba(213,194,153,0.3) !important;
     }
-    .cot-step-dot.done {
-      background: rgba(213,194,153,0.15);
-      border-color: #d5c299; color: #d5c299;
+    #cot-app .cot-step-dot.done {
+      background: rgba(213,194,153,0.15) !important;
+      border-color: #d5c299 !important; color: #d5c299 !important;
     }
-    .cot-step-label {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 10px; font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: #8f877c;
-      margin-top: 6px;
-      transition: color 0.3s ease;
+    #cot-app .cot-step-label {
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 10px !important; font-weight: 600 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.8px !important;
+      color: #8f877c !important;
+      margin-top: 6px !important;
+      display: block !important;
     }
-    .cot-step-label.active { color: #d5c299; }
-    .cot-step-label.done { color: #9a9590; }
-    .cot-step-line {
-      position: absolute;
-      top: 16px; left: 50%;
-      width: 100%; height: 2px;
-      background: rgba(213,194,153,0.18);
-      z-index: 0;
+    #cot-app .cot-step-label.active { color: #d5c299 !important; }
+    #cot-app .cot-step-label.done { color: #9a9590 !important; }
+    #cot-app .cot-step-line {
+      position: absolute !important;
+      top: 16px !important; left: 50% !important;
+      width: 100% !important; height: 2px !important;
+      background: rgba(213,194,153,0.18) !important;
+      z-index: 0 !important;
     }
-    .cot-step-line.done { background: rgba(213,194,153,0.4); }
-    .cot-step:last-child .cot-step-line { display: none; }
+    #cot-app .cot-step-line.done { background: rgba(213,194,153,0.4) !important; }
+    #cot-app .cot-step:last-child .cot-step-line { display: none !important; }
 
     /* FORM */
-    .cot-form {
-      padding: 16px 24px 24px;
-      max-width: 420px;
-      margin: 0 auto;
+    #cot-app .cot-form {
+      padding: 16px 24px 24px !important;
+      max-width: 420px !important;
+      margin: 0 auto !important;
     }
-    .cot-field { margin-bottom: 20px; }
-    .cot-label {
-      display: flex; align-items: center;
-      gap: 8px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12px; font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #9a9590;
-      margin-bottom: 8px;
+    #cot-app .cot-field { margin-bottom: 20px !important; }
+    #cot-app .cot-label {
+      display: flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 12px !important;
+      font-weight: 600 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 1px !important;
+      color: #9a9590 !important;
+      margin-bottom: 8px !important;
+      padding: 0 !important;
     }
-    .cot-label svg { color: #d5c299; opacity: 0.7; flex-shrink: 0; }
-    .cot-select, .cot-input {
-      width: 100%;
-      padding: 14px 16px;
-      background: #252525;
-      border: 1.5px solid rgba(213,194,153,0.14);
-      border-radius: 10px;
-      color: #f0ece4;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 15px; font-weight: 500;
-      outline: none;
-      transition: all 0.25s ease;
-      -webkit-appearance: none;
-      appearance: none;
+    #cot-app .cot-label svg { color: #d5c299 !important; opacity: 0.7 !important; flex-shrink: 0 !important; }
+    #cot-app .cot-select,
+    #cot-app .cot-input {
+      width: 100% !important;
+      padding: 14px 16px !important;
+      background: #252525 !important;
+      border: 1.5px solid rgba(213,194,153,0.14) !important;
+      border-radius: 10px !important;
+      color: #f0ece4 !important;
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 15px !important;
+      font-weight: 500 !important;
+      outline: none !important;
+      -webkit-appearance: none !important;
+      appearance: none !important;
+      margin: 0 !important;
+      box-shadow: none !important;
+      line-height: 1.5 !important;
+      display: block !important;
     }
-    .cot-select:focus, .cot-input:focus {
-      border-color: #d5c299;
-      box-shadow: 0 0 0 3px rgba(213,194,153,0.1);
+    #cot-app .cot-select:focus,
+    #cot-app .cot-input:focus {
+      border-color: #d5c299 !important;
+      box-shadow: 0 0 0 3px rgba(213,194,153,0.1) !important;
     }
-    .cot-select {
-      cursor: pointer;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23d5c299' stroke-width='2' fill='none'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 16px center;
-      padding-right: 40px;
+    #cot-app .cot-select {
+      cursor: pointer !important;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23d5c299' stroke-width='2' fill='none'/%3E%3C/svg%3E") !important;
+      background-repeat: no-repeat !important;
+      background-position: right 16px center !important;
+      padding-right: 40px !important;
     }
-    .cot-select option { background: #252525; color: #f0ece4; }
+    #cot-app .cot-select option { background: #252525 !important; color: #f0ece4 !important; }
 
-    .cot-pueblo-wrap { position: relative; }
-    .cot-pueblo-drop {
-      position: absolute;
-      top: calc(100% + 2px);
-      left: 0; right: 0;
-      max-height: 200px;
-      overflow-y: auto;
-      background: #252525;
-      border: 1.5px solid rgba(213,194,153,0.14);
-      border-radius: 0 0 10px 10px;
-      z-index: 10;
+    #cot-app .cot-pueblo-wrap { position: relative !important; }
+    #cot-app .cot-pueblo-drop {
+      position: absolute !important;
+      top: calc(100% + 2px) !important;
+      left: 0 !important; right: 0 !important;
+      max-height: 200px !important;
+      overflow-y: auto !important;
+      background: #252525 !important;
+      border: 1.5px solid rgba(213,194,153,0.14) !important;
+      border-radius: 0 0 10px 10px !important;
+      z-index: 10 !important;
     }
-    .cot-pueblo-item {
-      padding: 12px 16px;
-      cursor: pointer;
-      font-size: 14px;
-      color: #d8d0c5;
-      transition: all 0.15s;
-      border-bottom: 1px solid #2f2f2f;
+    #cot-app .cot-pueblo-item {
+      padding: 12px 16px !important;
+      cursor: pointer !important;
+      font-size: 14px !important;
+      color: #d8d0c5 !important;
+      border-bottom: 1px solid #2f2f2f !important;
+      font-family: 'DM Sans', sans-serif !important;
     }
-    .cot-pueblo-item:last-child { border-bottom: none; }
-    .cot-pueblo-item:hover {
-      background: rgba(213,194,153,0.08);
-      color: #d5c299;
+    #cot-app .cot-pueblo-item:last-child { border-bottom: none !important; }
+    #cot-app .cot-pueblo-item:hover {
+      background: rgba(213,194,153,0.08) !important;
+      color: #d5c299 !important;
     }
 
-    .cot-qty-wrap {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    #cot-app .cot-qty-wrap {
+      display: flex !important;
+      align-items: center !important;
+      gap: 10px !important;
     }
-    .cot-qty-unit {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 14px; font-weight: 500;
-      color: #d5c299;
+    #cot-app .cot-qty-unit {
+      font-family: 'JetBrains Mono', monospace !important;
+      font-size: 14px !important;
+      font-weight: 500 !important;
+      color: #d5c299 !important;
     }
 
     /* RESULT CARD */
-    .cot-result {
-      margin: 4px auto 16px;
-      max-width: 420px;
-      border-radius: 14px;
-      overflow: hidden;
-      animation: cotIn 0.4s ease-out;
-      border: 1px solid rgba(213,194,153,0.15);
+    #cot-app .cot-result {
+      margin: 4px auto 16px !important;
+      max-width: 420px !important;
+      border-radius: 14px !important;
+      overflow: hidden !important;
+      border: 1px solid rgba(213,194,153,0.15) !important;
+      display: block !important;
     }
-    @keyframes cotIn {
-      from { opacity: 0; transform: translateY(20px) scale(0.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+    #cot-app .cot-result-top {
+      background: linear-gradient(135deg, #d5c299, #b8a17a) !important;
+      padding: 24px !important;
+      text-align: center !important;
+      position: relative !important;
+      overflow: hidden !important;
     }
-    .cot-result-top {
-      background: linear-gradient(135deg, #d5c299, #b8a17a);
-      padding: 24px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+    #cot-app .cot-result-label {
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 11px !important;
+      font-weight: 600 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 1.5px !important;
+      color: rgba(12,17,23,0.6) !important;
+      margin-bottom: 4px !important;
     }
-    .cot-result-top::before {
-      content: '';
-      position: absolute;
-      top: -50%; right: -30%;
-      width: 60%; height: 200%;
-      background: radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 70%);
-      pointer-events: none;
+    #cot-app .cot-result-total {
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 38px !important;
+      font-weight: 800 !important;
+      color: #1b1b1b !important;
+      letter-spacing: -1px !important;
+      line-height: 1 !important;
     }
-    .cot-result-label {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 11px; font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: rgba(12,17,23,0.6);
-      margin-bottom: 4px;
+    #cot-app .cot-result-body {
+      background: #252525 !important;
+      padding: 16px 20px !important;
     }
-    .cot-result-total {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 38px; font-weight: 800;
-      color: #1b1b1b;
-      letter-spacing: -1px;
-      line-height: 1;
+    #cot-app .cot-result-row {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      padding: 12px 0 !important;
+      border-bottom: 1px solid rgba(213,194,153,0.5) !important;
     }
-    .cot-result-body {
-      background: #252525;
-      padding: 16px 20px;
+    #cot-app .cot-result-row:last-child { border-bottom: none !important; }
+    #cot-app .cot-result-row-left {
+      display: flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+      color: #9a9590 !important;
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 13px !important;
+      font-weight: 500 !important;
     }
-    .cot-result-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 0;
-      border-bottom: 1px solid rgba(213,194,153,0.5);
+    #cot-app .cot-result-row-left svg { color: #8f877c !important; flex-shrink: 0 !important; }
+    #cot-app .cot-result-row-val {
+      font-family: 'JetBrains Mono', monospace !important;
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      color: #f0ece4 !important;
     }
-    .cot-result-row:last-child { border-bottom: none; }
-    .cot-result-row-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: #9a9590;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px; font-weight: 500;
-    }
-    .cot-result-row-left svg {
-      color: #8f877c;
-      flex-shrink: 0;
-    }
-    .cot-result-row-val {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 14px; font-weight: 600;
-      color: #f0ece4;
-    }
-    .cot-result-row-val.accent { color: #d5c299; }
+    #cot-app .cot-result-row-val.accent { color: #d5c299 !important; }
 
-    .cot-min-msg {
-      margin: 4px auto 16px;
-      max-width: 420px;
-      background: rgba(239,68,68,0.08);
-      border: 1px solid rgba(239,68,68,0.2);
-      border-radius: 10px;
-      padding: 16px 20px;
-      text-align: center;
-      color: #ef4444;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px; font-weight: 600;
-      animation: cotIn 0.3s ease-out;
+    #cot-app .cot-min-msg {
+      margin: 4px auto 16px !important;
+      max-width: 420px !important;
+      background: rgba(239,68,68,0.08) !important;
+      border: 1px solid rgba(239,68,68,0.2) !important;
+      border-radius: 10px !important;
+      padding: 16px 20px !important;
+      text-align: center !important;
+      color: #ef4444 !important;
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 14px !important;
+      font-weight: 600 !important;
     }
 
     /* WHATSAPP BUTTON */
-    .cot-wa-wrap {
-      padding: 0 24px 8px;
-      max-width: 420px;
-      margin: 0 auto;
+    #cot-app .cot-wa-wrap {
+      padding: 0 24px 8px !important;
+      max-width: 420px !important;
+      margin: 0 auto !important;
     }
-    .cot-wa-btn {
+    #cot-app .cot-wa-btn {
       display: flex !important;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      padding: 16px;
-      background: #25d366;
-      border: none;
-      border-radius: 12px;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 10px !important;
+      width: 100% !important;
+      padding: 16px !important;
+      background: #25d366 !important;
+      border: none !important;
+      border-radius: 12px !important;
       color: #f0ece4 !important;
       font-family: 'DM Sans', sans-serif !important;
       font-size: 16px !important;
       font-weight: 700 !important;
-      cursor: pointer;
+      cursor: pointer !important;
       text-decoration: none !important;
-      transition: all 0.25s ease;
-      box-shadow: 0 4px 16px rgba(37,211,102,0.25);
+      box-shadow: 0 4px 16px rgba(37,211,102,0.25) !important;
     }
-    .cot-wa-btn:hover {
-      background: #1f9f59;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 24px rgba(37,211,102,0.35);
+    #cot-app .cot-wa-btn:hover {
+      background: #1f9f59 !important;
       color: #f0ece4 !important;
     }
 
-    .cot-disclaimer {
-      text-align: center;
-      padding: 12px 24px 32px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 11px;
-      color: #9a9590;
-      max-width: 420px;
-      margin: 0 auto;
+    #cot-app .cot-disclaimer {
+      text-align: center !important;
+      padding: 12px 24px 32px !important;
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 11px !important;
+      color: #9a9590 !important;
+      max-width: 420px !important;
+      margin: 0 auto !important;
     }
 
-    .cot-footer {
-      text-align: center;
-      padding: 20px 24px 60px;
-      border-top: 1px solid #2f2f2f;
-      max-width: 420px;
-      margin: 0 auto;
-      background: #1b1b1b;
-      color: #f0ece4;
+    #cot-app .cot-footer-area {
+      text-align: center !important;
+      padding: 20px 24px 60px !important;
+      border-top: 1px solid #2f2f2f !important;
+      max-width: 420px !important;
+      margin: 0 auto !important;
+      background: transparent !important;
     }
-    .cot-footer-brand {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 11px; font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: #9a9590;
+    #cot-app .cot-footer-brand {
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 11px !important;
+      font-weight: 600 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 1.5px !important;
+      color: #9a9590 !important;
     }
-    .cot-footer-link {
-      display: inline-block;
-      margin-top: 8px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
+    #cot-app .cot-footer-link {
+      display: inline-block !important;
+      margin-top: 8px !important;
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 12px !important;
       color: #d5c299 !important;
       text-decoration: none !important;
-      font-weight: 500;
+      font-weight: 500 !important;
     }
 
-    .cot-hidden { display: none !important; }
+    #cot-app .cot-hidden { display: none !important; }
+
+    /* Override any conflicting h1 sizes from Bootstrap or index.css */
+    #cot-app h1.cot-hero-title { font-size: 30px !important; }
+    @media (min-width: 768px) {
+      #cot-app h1.cot-hero-title { font-size: 36px !important; }
+      #cot-app .cot-hero-sub { font-size: 15px !important; }
+    }
   </style>
 </head>
 <body>
 
   <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+
   <nav class="navbar navbar-expand-lg site-navbar fixed-top" aria-label="Principal">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html">
         <img src="./assets/photos/nav-logo.png" alt="Logo de Isla Prime" class="nav-logo">
       </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Abrir navegación"
-      >
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir navegación">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
@@ -447,10 +442,9 @@
     </div>
   </nav>
 
-  <main id="main-content" class="cot-page">
-    <div class="cot-wrap">
+  <main id="main-content">
+    <div id="cot-app">
 
-      <!-- HERO -->
       <div class="cot-hero">
         <img class="cot-hero-logo" src="assets/photos/nav-logo.png" alt="Isla Prime Logistics" onerror="this.style.display='none'">
         <h1 class="cot-hero-title">Cotiza tu <span>acarreo</span><br>al instante</h1>
@@ -459,7 +453,6 @@
         <div class="cot-hero-bar"></div>
       </div>
 
-      <!-- STEPS -->
       <div class="cot-steps">
         <div class="cot-step">
           <div class="cot-step-dot active" id="step1">1</div>
@@ -477,7 +470,6 @@
         </div>
       </div>
 
-      <!-- FORM -->
       <div class="cot-form">
         <div class="cot-field">
           <label class="cot-label">
@@ -513,14 +505,12 @@
         </div>
       </div>
 
-      <!-- RESULTS -->
       <div id="minMsg" class="cot-min-msg cot-hidden">Mínimo de 10 m³ por orden</div>
       <div id="resultCard" class="cot-hidden"></div>
       <div id="waWrap" class="cot-wa-wrap cot-hidden"></div>
       <div id="disclaimer" class="cot-disclaimer cot-hidden">Cotización sujeta a confirmación.</div>
 
-      <!-- FOOTER -->
-      <div class="cot-footer" id="footer">
+      <div class="cot-footer-area" id="footer">
         <div class="cot-footer-brand">Isla Prime Logistics</div>
         <a class="cot-footer-link" href="acarreo.html">Servicio de acarreo</a>
       </div>
@@ -528,13 +518,8 @@
     </div>
   </main>
 
-<script
-  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
-  crossorigin="anonymous"
-></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-// ─── DATA ───────────────────────────────────────────────────────────
 const YARD = { lat: 18.4867, lng: -66.8254 };
 
 const QUARRIES = [
@@ -636,7 +621,6 @@ const PUEBLOS = [
   { name: "Yauco", lat: 18.0350, lng: -66.8500, toll: 0, rf: 1.65 },
 ];
 
-// ─── DISTANCE ───────────────────────────────────────────────────────
 function hav(lat1, lng1, lat2, lng2) {
   const R = 3958.8;
   const dLat = (lat2 - lat1) * Math.PI / 180;
@@ -647,22 +631,14 @@ function hav(lat1, lng1, lat2, lng2) {
 
 let selectedPueblo = null;
 
-// ─── PIXEL HELPERS ──────────────────────────────────────────────────
 function pixelTrack(eventName, params) {
-  try {
-    if (typeof fbq === 'function') {
-      if (params) { fbq('trackCustom', eventName, params); }
-      else { fbq('trackCustom', eventName); }
-    }
-  } catch(e) {}
+  try { if (typeof fbq === 'function') { params ? fbq('trackCustom', eventName, params) : fbq('trackCustom', eventName); } } catch(e) {}
 }
 function pixelTrackStandard(eventName, params) {
-  try { if (typeof fbq === 'function') { fbq('track', eventName, params || {}); } }
-  catch(e) {}
+  try { if (typeof fbq === 'function') { fbq('track', eventName, params || {}); } } catch(e) {}
 }
 let _pixelStartFired = false, _pixelPuebloFired = false, _pixelQtyFired = false;
 
-// ─── INIT ───────────────────────────────────────────────────────────
 const materialSelect = document.getElementById('material');
 MATERIALS.forEach(m => {
   const opt = document.createElement('option');
@@ -670,7 +646,6 @@ MATERIALS.forEach(m => {
   materialSelect.appendChild(opt);
 });
 
-// ─── PUEBLO SEARCH ──────────────────────────────────────────────────
 function filterPueblos() {
   selectedPueblo = null;
   const val = document.getElementById('puebloInput').value.toLowerCase();
@@ -687,33 +662,22 @@ function selectPueblo(name) {
   document.getElementById('puebloInput').value = name;
   selectedPueblo = name;
   document.getElementById('puebloDrop').classList.add('cot-hidden');
-  if (!_pixelPuebloFired) {
-    _pixelPuebloFired = true;
-    pixelTrack('cotizador_pueblo_selected', { pueblo: name });
-  }
+  if (!_pixelPuebloFired) { _pixelPuebloFired = true; pixelTrack('cotizador_pueblo_selected', { pueblo: name }); }
   calculate();
 }
 function showPuebloList() {
-  if (selectedPueblo) {
-    document.getElementById('puebloInput').value = '';
-    selectedPueblo = null;
-  }
+  if (selectedPueblo) { document.getElementById('puebloInput').value = ''; selectedPueblo = null; }
   filterPueblos();
 }
 function hidePuebloList() {
   document.getElementById('puebloDrop').classList.add('cot-hidden');
-  if (!selectedPueblo) {
-    document.getElementById('puebloInput').value = '';
-    calculate();
-  }
+  if (!selectedPueblo) { document.getElementById('puebloInput').value = ''; calculate(); }
 }
 
-// ─── CALCULATE ──────────────────────────────────────────────────────
 function calculate() {
   const material = document.getElementById('material').value;
   const qty = Number(document.getElementById('quantity').value);
   const pueblo = selectedPueblo;
-
   updateSteps(material, pueblo, qty);
 
   const resultCard = document.getElementById('resultCard');
@@ -728,33 +692,18 @@ function calculate() {
   minMsg.classList.add('cot-hidden');
   footer.style.display = '';
 
-  if (material && !_pixelStartFired) {
-    _pixelStartFired = true;
-    pixelTrack('cotizador_start');
-  }
-  if (material) {
-    pixelTrack('cotizador_material_selected', { material: material });
-  }
+  if (material && !_pixelStartFired) { _pixelStartFired = true; pixelTrack('cotizador_start'); }
+  if (material) { pixelTrack('cotizador_material_selected', { material: material }); }
 
   if (!material || !pueblo || !qty || qty <= 0) return;
 
-  if (qty > 0 && !_pixelQtyFired) {
-    _pixelQtyFired = true;
-    pixelTrack('cotizador_quantity_entered', { cantidad: qty });
-  }
-
-  if (qty < 10) {
-    pixelTrack('cotizador_below_minimum', { cantidad: qty });
-    minMsg.classList.remove('cot-hidden');
-    return;
-  }
+  if (qty > 0 && !_pixelQtyFired) { _pixelQtyFired = true; pixelTrack('cotizador_quantity_entered', { cantidad: qty }); }
+  if (qty < 10) { pixelTrack('cotizador_below_minimum', { cantidad: qty }); minMsg.classList.remove('cot-hidden'); return; }
 
   const dest = PUEBLOS.find(p => p.name === pueblo);
   if (!dest) return;
-
   const trips = qty <= 18 ? 1 : Math.ceil(qty / 18);
   const quarries = QUARRIES.filter(q => q.material === material);
-
   const options = quarries.map(q => {
     const yardToQ = hav(YARD.lat, YARD.lng, q.lat, q.lng) * dest.rf;
     const rawQToDest = hav(q.lat, q.lng, dest.lat, dest.lng) * dest.rf;
@@ -768,27 +717,13 @@ function calculate() {
     const total = Math.round((transport + driver + mat + tolls) * 100) / 100;
     return { quarry: q, total, trips, transport: Math.round(transport*100)/100, driver, mat, matCost, tolls: Math.round(tolls*100)/100 };
   });
-
   options.sort((a, b) => a.total - b.total);
   const best = options[0];
-
   window.currentQuote = { material, pueblo, qty, best };
 
-  pixelTrackStandard('Lead', {
-    content_name: material,
-    content_category: 'acarreo',
-    value: best.total,
-    currency: 'USD'
-  });
-  pixelTrack('cotizador_complete', {
-    material: material, pueblo: pueblo, cantidad: qty,
-    viajes: best.trips, total: best.total
-  });
-  if (best.total > 1000) {
-    pixelTrack('cotizador_high_value', {
-      material: material, pueblo: pueblo, total: best.total
-    });
-  }
+  pixelTrackStandard('Lead', { content_name: material, content_category: 'acarreo', value: best.total, currency: 'USD' });
+  pixelTrack('cotizador_complete', { material, pueblo, cantidad: qty, viajes: best.trips, total: best.total });
+  if (best.total > 1000) { pixelTrack('cotizador_high_value', { material, pueblo, total: best.total }); }
 
   const fmt = n => n.toLocaleString('en-US', { minimumFractionDigits: 2 });
 
@@ -844,11 +779,7 @@ function onWhatsAppClick() {
   pixelTrackStandard('Contact');
   if (window.currentQuote) {
     const q = window.currentQuote;
-    pixelTrack('whatsapp_click', {
-      material: q.material, pueblo: q.pueblo, cantidad: q.qty,
-      viajes: q.best.trips, total: q.best.total,
-      value: q.best.total, currency: 'USD'
-    });
+    pixelTrack('whatsapp_click', { material: q.material, pueblo: q.pueblo, cantidad: q.qty, viajes: q.best.trips, total: q.best.total, value: q.best.total, currency: 'USD' });
   }
   logCurrentQuote();
 }
@@ -872,7 +803,6 @@ function updateSteps(mat, pub, qty) {
   });
 }
 
-// ─── LOG TO GOOGLE SHEETS ───────────────────────────────────────────
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbz449LMkEwDK02ds2igKccT3md3SwVuPtnDqAyxrxRQIgAlCWvaUft9FVPJByKtJkBc/exec';
 let lastLog = '';
 function logCurrentQuote() {
@@ -887,13 +817,7 @@ function logToSheet(material, destino, cantidad, best) {
   const now = new Date();
   const fecha = now.toLocaleDateString('es-PR');
   const hora = now.toLocaleTimeString('es-PR', { hour: '2-digit', minute: '2-digit' });
-  const payload = {
-    fecha: fecha, hora: hora, material: material, destino: destino,
-    cantidad: cantidad, viajes: best.trips, total: best.total,
-    transporte: best.transport, chofer: best.driver,
-    costoMaterial: best.matCost, ventaMaterial: best.mat,
-    peajes: best.tolls, cantera: best.quarry.location
-  };
+  const payload = { fecha, hora, material, destino, cantidad, viajes: best.trips, total: best.total, transporte: best.transport, chofer: best.driver, costoMaterial: best.matCost, ventaMaterial: best.mat, peajes: best.tolls, cantera: best.quarry.location };
   const encoded = encodeURIComponent(JSON.stringify(payload));
   const img = new Image();
   img.src = SHEET_URL + '?data=' + encoded;
