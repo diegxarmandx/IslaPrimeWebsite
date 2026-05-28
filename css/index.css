@@ -2135,6 +2135,35 @@ select.form-control option {
   }
 }
 
+@media (min-width: 994px) and (max-width: 1180px) {
+  .founder-card {
+    grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.18fr);
+  }
+
+  .founder-media img {
+    height: clamp(320px, 32vw, 390px);
+    min-height: 0;
+    max-height: none;
+    object-fit: cover;
+    object-position: top center;
+  }
+}
+
+@media (min-width: 730px) and (max-width: 993px) {
+  .founder-media {
+    width: min(100%, 460px);
+    margin-inline: auto;
+  }
+
+  .founder-media img {
+    height: clamp(340px, 52vw, 440px);
+    min-height: 0;
+    max-height: none;
+    object-fit: cover;
+    object-position: top center;
+  }
+}
+
 @media (max-width: 992px) {
   :root {
     --container: min(1200px, calc(100% - 2rem));
