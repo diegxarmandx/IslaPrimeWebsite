@@ -1439,7 +1439,7 @@ select.form-control option {
 .message.assistant span,
 .message.message--assistant span {
   background: var(--color-surface);
-  color: #2b3c4b;
+  color: #ffffff;
   border: 1px solid rgba(213, 194, 153, 0.16);
   border-bottom-left-radius: 4px;
 }
